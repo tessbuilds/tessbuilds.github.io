@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <!-- Background gradient - deep navy to rich blue -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A1628"/>
+      <stop offset="50%" style="stop-color:#0D2240"/>
+      <stop offset="100%" style="stop-color:#091525"/>
+    </linearGradient>
+
+    <!-- Main accent gradient - electric blue to cyan -->
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2E7EFF"/>
+      <stop offset="100%" style="stop-color:#00C2FF"/>
+    </linearGradient>
+
+    <!-- Green gradient for energy pulse -->
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00E676"/>
+      <stop offset="100%" style="stop-color:#00BFA5"/>
+    </linearGradient>
+
+    <!-- Glow filter for figure -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Soft glow for background elements -->
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="30" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Rounded rect clip -->
+    <clipPath id="roundedClip">
+      <rect width="1024" height="1024" rx="224" ry="224"/>
+    </clipPath>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="1024" height="1024" rx="224" ry="224" fill="url(#bgGrad)"/>
+
+  <g clip-path="url(#roundedClip)">
+
+    <!-- Subtle grid lines for depth -->
+    <g opacity="0.04" stroke="#4A9FFF" stroke-width="1">
+      <line x1="0" y1="256" x2="1024" y2="256"/>
+      <line x1="0" y1="512" x2="1024" y2="512"/>
+      <line x1="0" y1="768" x2="1024" y2="768"/>
+      <line x1="256" y1="0" x2="256" y2="1024"/>
+      <line x1="512" y1="0" x2="512" y2="1024"/>
+      <line x1="768" y1="0" x2="768" y2="1024"/>
+    </g>
+
+    <!-- Background glow orb - top right -->
+    <circle cx="750" cy="220" r="220" fill="#1A4AFF" opacity="0.12" filter="url(#softGlow)"/>
+
+    <!-- Background glow orb - bottom left -->
+    <circle cx="260" cy="820" r="180" fill="#00C2FF" opacity="0.08" filter="url(#softGlow)"/>
+
+    <!-- Desk surface - clean geometric shape -->
+    <!-- Desk top surface -->
+    <rect x="160" y="610" width="704" height="52" rx="10" fill="url(#accentGrad)" opacity="0.9"/>
+
+    <!-- Desk legs -->
+    <rect x="200" y="662" width="36" height="120" rx="8" fill="#1A5AE8" opacity="0.8"/>
+    <rect x="788" y="662" width="36" height="120" rx="8" fill="#1A5AE8" opacity="0.8"/>
+
+    <!-- Desk surface highlight line -->
+    <rect x="160" y="610" width="704" height="4" rx="2" fill="#7FC4FF" opacity="0.6"/>
+
+    <!-- Monitor on desk -->
+    <rect x="390" y="420" width="244" height="165" rx="12" fill="#0D2240" stroke="#2E7EFF" stroke-width="3" opacity="0.95"/>
+    <!-- Monitor screen glow -->
+    <rect x="400" y="430" width="224" height="145" rx="8" fill="#0A3060" opacity="0.9"/>
+    <!-- Screen content - pulse lines suggesting activity -->
+    <rect x="416" y="455" width="100" height="6" rx="3" fill="#2E7EFF" opacity="0.7"/>
+    <rect x="416" y="470" width="140" height="6" rx="3" fill="#00C2FF" opacity="0.5"/>
+    <rect x="416" y="485" width="80" height="6" rx="3" fill="#2E7EFF" opacity="0.4"/>
+    <!-- Monitor stand -->
+    <rect x="496" y="585" width="32" height="28" rx="4" fill="#1A5AE8" opacity="0.8"/>
+    <rect x="464" y="608" width="96" height="8" rx="4" fill="#1A5AE8" opacity="0.7"/>
+
+    <!-- HUMAN FIGURE - dynamic, mid-exercise pose (raised arms = victory/strength) -->
+    <g filter="url(#glow)" opacity="0.97">
+
+      <!-- Figure positioned LEFT of desk, arms raised in strength pose -->
+
+      <!-- HEAD -->
+      <circle cx="285" cy="320" r="44" fill="url(#accentGrad)"/>
+
+      <!-- NECK -->
+      <rect x="273" y="360" width="24" height="28" rx="8" fill="url(#accentGrad)"/>
+
+      <!-- TORSO -->
+      <path d="M230 388 Q285 378 340 388 L348 530 Q285 545 222 530 Z" fill="url(#accentGrad)" opacity="0.95"/>
+
+      <!-- LEFT ARM - raised up triumphantly -->
+      <path d="M230 400 Q195 370 168 330 Q158 315 165 305 Q172 295 183 302 Q198 315 215 345 Q232 375 242 408 Z" fill="url(#accentGrad)"/>
+      <!-- Left hand/fist -->
+      <circle cx="166" cy="303" r="20" fill="url(#accentGrad)"/>
+
+      <!-- RIGHT ARM - raised up triumphantly -->
+      <path d="M340 400 Q375 370 402 330 Q412 315 405 305 Q398 295 387 302 Q372 315 355 345 Q338 375 328 408 Z" fill="url(#accentGrad)"/>
+      <!-- Right hand/fist -->
+      <circle cx="404" cy="303" r="20" fill="url(#accentGrad)"/>
+
+      <!-- LEGS -->
+      <!-- Left leg -->
+      <path d="M240 528 Q228 580 220 640 Q216 658 228 662 Q240 665 246 648 Q258 590 268 535 Z" fill="url(#accentGrad)"/>
+      <!-- Right leg -->
+      <path d="M330 528 Q342 580 350 640 Q354 658 342 662 Q330 665 324 648 Q312 590 302 535 Z" fill="url(#accentGrad)"/>
+
+      <!-- Shoes -->
+      <ellipse cx="224" cy="662" rx="26" ry="12" fill="#1A5AE8"/>
+      <ellipse cx="346" cy="662" rx="26" ry="12" fill="#1A5AE8"/>
+
+    </g>
+
+    <!-- Energy arc / motion lines around figure arms -->
+    <path d="M130 260 Q110 290 118 330" stroke="url(#greenGrad)" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.8"/>
+    <path d="M118 245 Q95 280 104 325" stroke="url(#greenGrad)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+
+    <path d="M440 260 Q460 290 452 330" stroke="url(#greenGrad)" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.8"/>
+    <path d="M452 245 Q475 280 466 325" stroke="url(#greenGrad)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+
+    <!-- Pulse ring around figure head - activity indicator -->
+    <circle cx="285" cy="320" r="68" stroke="url(#accentGrad)" stroke-width="3" fill="none" opacity="0.3"/>
+    <circle cx="285" cy="320" r="88" stroke="#00C2FF" stroke-width="1.5" fill="none" opacity="0.15"/>
+
+    <!-- Green energy dot - top of raised fists -->
+    <circle cx="166" cy="285" r="10" fill="url(#greenGrad)" opacity="0.9"/>
+    <circle cx="404" cy="285" r="10" fill="url(#greenGrad)" opacity="0.9"/>
+
+    <!-- Heartbeat / activity line at bottom - like a fitness tracker readout -->
+    <polyline
+      points="480,700 510,700 525,660 540,740 555,680 570,720 585,700 760,700"
+      stroke="url(#greenGrad)"
+      stroke-width="5"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      opacity="0.85"
+    />
+    <!-- Pulse dot at peak -->
+    <circle cx="540" cy="740" r="7" fill="#00E676" opacity="0.9"/>
+
+    <!-- DF monogram watermark - subtle bottom right -->
+    <text x="820" y="940" font-family="'SF Pro Display', -apple-system, sans-serif" font-size="52" font-weight="900" fill="url(#accentGrad)" opacity="0.2" letter-spacing="-2">DF</text>
+
+  </g>
+
+  <!-- App icon border shine -->
+  <rect width="1024" height="1024" rx="224" ry="224" fill="none" stroke="white" stroke-width="2" opacity="0.06"/>
+</svg>

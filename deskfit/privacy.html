@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Privacy Policy — DeskFit AI</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --bg: #07101f;
+                --bg2: #0d1e35;
+                --accent: #2e7eff;
+                --accent2: #00c2ff;
+                --green: #00e676;
+                --text: #e8edf5;
+                --muted: rgba(232, 237, 245, 0.45);
+                --border: rgba(46, 126, 255, 0.15);
+                --card: rgba(255, 255, 255, 0.03);
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                background: var(--bg);
+                color: var(--text);
+                font-family: "DM Sans", sans-serif;
+                font-size: 16px;
+                line-height: 1.75;
+                min-height: 100vh;
+                overflow-x: hidden;
+            }
+
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background:
+                    radial-gradient(
+                        ellipse 60% 50% at 10% 10%,
+                        rgba(46, 126, 255, 0.08) 0%,
+                        transparent 70%
+                    ),
+                    radial-gradient(
+                        ellipse 40% 40% at 90% 80%,
+                        rgba(0, 194, 255, 0.06) 0%,
+                        transparent 60%
+                    );
+                pointer-events: none;
+                z-index: 0;
+            }
+
+            .wrap {
+                position: relative;
+                z-index: 1;
+                max-width: 760px;
+                margin: 0 auto;
+                padding: 0 24px;
+            }
+
+            /* ── Nav ── */
+            nav {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: rgba(7, 16, 31, 0.85);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--border);
+                padding: 16px 0;
+            }
+
+            nav .wrap {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .logo-name {
+                font-family: "Syne", sans-serif;
+                font-weight: 700;
+                font-size: 18px;
+                color: var(--text);
+                text-decoration: none;
+            }
+
+            .nav-badge {
+                font-size: 12px;
+                color: var(--muted);
+                font-weight: 300;
+                letter-spacing: 0.05em;
+            }
+
+            /* ── Hero ── */
+            .hero {
+                padding: 80px 0 56px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .hero-label {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 11px;
+                font-weight: 500;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: var(--accent);
+                background: rgba(46, 126, 255, 0.1);
+                border: 1px solid rgba(46, 126, 255, 0.2);
+                padding: 6px 14px;
+                border-radius: 100px;
+                margin-bottom: 24px;
+            }
+
+            .hero-label::before {
+                content: "";
+                width: 6px;
+                height: 6px;
+                background: var(--accent);
+                border-radius: 50%;
+            }
+
+            h1 {
+                font-family: "Syne", sans-serif;
+                font-size: clamp(36px, 6vw, 56px);
+                font-weight: 800;
+                line-height: 1.05;
+                letter-spacing: -0.02em;
+                margin-bottom: 20px;
+                color: var(--text);
+            }
+
+            h1 span {
+                background: linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent2)
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .hero-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 24px;
+                margin-top: 32px;
+            }
+
+            .meta-item {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 13px;
+                color: var(--muted);
+            }
+
+            .meta-dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--green);
+                flex-shrink: 0;
+            }
+
+            /* ── TOC ── */
+            .toc {
+                margin: 48px 0 0;
+                padding: 28px;
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 20px;
+            }
+
+            .toc-title {
+                font-family: "Syne", sans-serif;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 16px;
+            }
+
+            .toc-list {
+                list-style: none;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px 24px;
+                counter-reset: item;
+            }
+
+            @media (max-width: 500px) {
+                .toc-list {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .toc-list a {
+                color: var(--text);
+                text-decoration: none;
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                opacity: 0.7;
+                transition:
+                    opacity 0.2s,
+                    color 0.2s;
+            }
+
+            .toc-list a:hover {
+                opacity: 1;
+                color: var(--accent2);
+            }
+
+            .toc-list a::before {
+                content: counter(item, decimal-leading-zero);
+                counter-increment: item;
+                font-size: 10px;
+                font-weight: 600;
+                color: var(--accent);
+                opacity: 0.6;
+                font-family: "Syne", sans-serif;
+                min-width: 24px;
+            }
+
+            /* ── Sections ── */
+            .sections {
+                padding: 56px 0 80px;
+            }
+
+            .section {
+                padding: 48px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                opacity: 0;
+                transform: translateY(24px);
+                transition:
+                    opacity 0.5s ease,
+                    transform 0.5s ease;
+            }
+
+            .section.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .section:last-child {
+                border-bottom: none;
+            }
+
+            .section-number {
+                font-family: "Syne", sans-serif;
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+                color: var(--accent);
+                opacity: 0.6;
+                margin-bottom: 8px;
+            }
+
+            h2 {
+                font-family: "Syne", sans-serif;
+                font-size: 22px;
+                font-weight: 700;
+                letter-spacing: -0.01em;
+                margin-bottom: 20px;
+                color: var(--text);
+                scroll-margin-top: 90px;
+            }
+
+            p {
+                color: rgba(232, 237, 245, 0.72);
+                margin-bottom: 16px;
+                font-weight: 300;
+            }
+
+            p:last-child {
+                margin-bottom: 0;
+            }
+
+            ul {
+                list-style: none;
+                margin: 16px 0;
+            }
+
+            ul li {
+                position: relative;
+                padding-left: 20px;
+                color: rgba(232, 237, 245, 0.72);
+                font-weight: 300;
+                margin-bottom: 10px;
+            }
+
+            ul li::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 11px;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--accent);
+                opacity: 0.5;
+            }
+
+            .highlight {
+                background: rgba(46, 126, 255, 0.06);
+                border: 1px solid rgba(46, 126, 255, 0.2);
+                border-radius: 14px;
+                padding: 20px 24px;
+                margin: 20px 0;
+            }
+
+            .highlight p {
+                color: rgba(232, 237, 245, 0.85);
+                margin: 0;
+                font-size: 15px;
+            }
+
+            .highlight strong {
+                color: var(--accent2);
+                font-weight: 500;
+            }
+
+            .highlight-green {
+                background: rgba(0, 230, 118, 0.05);
+                border-color: rgba(0, 230, 118, 0.2);
+            }
+
+            .highlight-green strong {
+                color: var(--green);
+            }
+
+            /* ── Contact card ── */
+            .contact-card {
+                margin-top: 24px;
+                padding: 28px;
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .contact-icon {
+                width: 52px;
+                height: 52px;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent2)
+                );
+                border-radius: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                flex-shrink: 0;
+            }
+
+            .contact-text p {
+                margin: 0;
+                font-size: 14px;
+            }
+
+            .contact-text a {
+                color: var(--accent2);
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            .contact-text a:hover {
+                text-decoration: underline;
+            }
+
+            /* ── Footer ── */
+            footer {
+                border-top: 1px solid var(--border);
+                padding: 40px 0;
+                text-align: center;
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 24px;
+                margin-bottom: 12px;
+                flex-wrap: wrap;
+            }
+
+            .footer-links a {
+                font-size: 13px;
+                color: var(--muted);
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+
+            .footer-links a:hover {
+                color: var(--text);
+            }
+
+            .footer-copy {
+                font-size: 13px;
+                color: rgba(232, 237, 245, 0.28);
+            }
+
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+            ::-webkit-scrollbar-track {
+                background: var(--bg);
+            }
+            ::-webkit-scrollbar-thumb {
+                background: rgba(46, 126, 255, 0.3);
+                border-radius: 3px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div class="wrap">
+                <a href="/" class="logo-name">tessbuild</a>
+                <span class="nav-badge">Privacy Policy</span>
+            </div>
+        </nav>
+
+        <div class="wrap">
+            <div class="hero">
+                <div class="hero-label">Legal</div>
+                <h1>Your privacy<br /><span>matters to us.</span></h1>
+                <p
+                    style="
+                        font-size: 17px;
+                        color: rgba(232, 237, 245, 0.6);
+                        max-width: 520px;
+                        font-weight: 300;
+                    "
+                >
+                    DeskFit AI is designed with privacy at its core. We collect
+                    only what we need to make your workouts better — nothing
+                    more.
+                </p>
+                <div class="hero-meta">
+                    <div class="meta-item">
+                        <div class="meta-dot"></div>
+                        Effective: March 12, 2026
+                    </div>
+                    <div class="meta-item">
+                        <div
+                            class="meta-dot"
+                            style="background: var(--accent2)"
+                        ></div>
+                        App: DeskFit AI
+                    </div>
+                    <div class="meta-item">
+                        <div
+                            class="meta-dot"
+                            style="background: var(--accent)"
+                        ></div>
+                        Developer: tessbuild
+                    </div>
+                </div>
+
+                <div class="toc">
+                    <div class="toc-title">Contents</div>
+                    <ol class="toc-list">
+                        <li><a href="#data-collected">Data We Collect</a></li>
+                        <li><a href="#data-use">How We Use It</a></li>
+                        <li><a href="#ai">AI &amp; Claude API</a></li>
+                        <li><a href="#third-party">Third Parties</a></li>
+                        <li><a href="#storage">Data Storage</a></li>
+                        <li><a href="#children">Children</a></li>
+                        <li><a href="#rights">Your Rights</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="sections">
+                <div class="section" id="data-collected">
+                    <div class="section-number">01</div>
+                    <h2>Data We Collect</h2>
+                    <p>
+                        DeskFit AI is a local-first app. The vast majority of
+                        your data never leaves your device.
+                    </p>
+                    <div class="highlight highlight-green">
+                        <p>
+                            <strong>No account required.</strong> DeskFit AI
+                            does not require you to create an account, provide
+                            an email address, or sign in with any service.
+                        </p>
+                    </div>
+                    <p>
+                        The following data is stored
+                        <strong>locally on your device only</strong>:
+                    </p>
+                    <ul>
+                        <li>Your first name (entered during onboarding)</li>
+                        <li>Fitness level and goal preferences</li>
+                        <li>Work schedule and break reminder settings</li>
+                        <li>Workout history and session data</li>
+                        <li>Streak and progress information</li>
+                        <li>Selected app theme</li>
+                    </ul>
+                    <p>
+                        The following data is sent to third-party services
+                        <strong>only when you generate a workout</strong>:
+                    </p>
+                    <ul>
+                        <li>Your first name</li>
+                        <li>
+                            Fitness level, goal, selected duration, and location
+                            type
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section" id="data-use">
+                    <div class="section-number">02</div>
+                    <h2>How We Use Your Data</h2>
+                    <p>
+                        We use the data we collect solely to provide and improve
+                        DeskFit AI's features:
+                    </p>
+                    <ul>
+                        <li>
+                            To generate personalized AI workouts tailored to
+                            your fitness level and goals
+                        </li>
+                        <li>
+                            To display your progress, streaks, and workout
+                            history
+                        </li>
+                        <li>
+                            To schedule stretch break and workout reminder
+                            notifications
+                        </li>
+                        <li>To remember your preferences between sessions</li>
+                    </ul>
+                    <div class="highlight">
+                        <p>
+                            <strong>We do not sell your data.</strong> We do not
+                            use your data for advertising. We do not share your
+                            data with marketers or data brokers — ever.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section" id="ai">
+                    <div class="section-number">03</div>
+                    <h2>AI &amp; Claude API</h2>
+                    <p>
+                        DeskFit AI uses Anthropic's Claude API to generate
+                        workout plans. When you tap "Generate AI Workout," a
+                        request is sent to Anthropic's servers containing:
+                    </p>
+                    <ul>
+                        <li>Your first name</li>
+                        <li>
+                            Selected workout duration (10, 20, or 30 minutes)
+                        </li>
+                        <li>Selected location (desk, home, or gym)</li>
+                        <li>Your fitness level and goal</li>
+                    </ul>
+                    <div class="highlight">
+                        <p>
+                            <strong
+                                >No sensitive data is sent to Anthropic.</strong
+                            >
+                            We never send your workout history, device
+                            information, location, or any other personal data to
+                            the Claude API.
+                        </p>
+                    </div>
+                    <p>
+                        Anthropic's data handling is governed by their own
+                        privacy policy, available at
+                        <a
+                            href="https://anthropic.com/privacy"
+                            target="_blank"
+                            style="color: var(--accent2)"
+                            >anthropic.com/privacy</a
+                        >. We recommend reviewing it if you have questions about
+                        how API requests are processed.
+                    </p>
+                </div>
+
+                <div class="section" id="third-party">
+                    <div class="section-number">04</div>
+                    <h2>Third Parties</h2>
+                    <p>
+                        DeskFit AI integrates with the following third-party
+                        services:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Anthropic Claude API</strong> — AI workout
+                            generation (see Section 3)
+                        </li>
+                        <li>
+                            <strong>Apple StoreKit</strong> — In-app purchase
+                            processing for DeskFit AI Pro. Apple handles all
+                            payment processing; we never see or store your
+                            payment information.
+                        </li>
+                        <li>
+                            <strong>Apple Push Notifications (APNs)</strong> —
+                            Used to deliver stretch break and workout reminders.
+                            Notification tokens are managed by Apple.
+                        </li>
+                    </ul>
+                    <p>
+                        We do not integrate any advertising SDKs, analytics
+                        platforms, or social media trackers.
+                    </p>
+                </div>
+
+                <div class="section" id="storage">
+                    <div class="section-number">05</div>
+                    <h2>Data Storage &amp; Security</h2>
+                    <p>
+                        All personal data — your name, preferences, workout
+                        history, and progress — is stored locally on your device
+                        using Apple's SwiftData framework and UserDefaults. This
+                        data is included in your iCloud device backup if you
+                        have iCloud backup enabled.
+                    </p>
+                    <div class="highlight highlight-green">
+                        <p>
+                            <strong>Deleting the app deletes your data.</strong>
+                            When you delete DeskFit AI from your device, all
+                            locally stored data is permanently removed. There is
+                            no server-side backup.
+                        </p>
+                    </div>
+                    <p>
+                        We do not operate any servers that store your personal
+                        information.
+                    </p>
+                </div>
+
+                <div class="section" id="children">
+                    <div class="section-number">06</div>
+                    <h2>Children's Privacy</h2>
+                    <p>
+                        DeskFit AI is not directed at children under the age of
+                        13. We do not knowingly collect personal information
+                        from children under 13. If you believe a child under 13
+                        has provided us with personal information, please
+                        contact us and we will take steps to delete it.
+                    </p>
+                </div>
+
+                <div class="section" id="rights">
+                    <div class="section-number">07</div>
+                    <h2>Your Rights</h2>
+                    <p>
+                        Since DeskFit AI stores all data locally on your device,
+                        you have full control over your data at all times:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Access</strong> — All your data is visible
+                            within the app (progress, history, settings)
+                        </li>
+                        <li>
+                            <strong>Correction</strong> — Update your name,
+                            preferences, and schedule anytime in Settings
+                        </li>
+                        <li>
+                            <strong>Deletion</strong> — Delete the app to
+                            permanently remove all data
+                        </li>
+                        <li>
+                            <strong>Reset</strong> — Use "Reset Onboarding" in
+                            Settings to start fresh
+                        </li>
+                    </ul>
+                    <p>
+                        If you are located in the EU/EEA, you may have
+                        additional rights under the GDPR. As DeskFit AI does not
+                        collect or process personal data on our servers, most
+                        GDPR obligations do not apply. For any questions,
+                        contact us below.
+                    </p>
+                </div>
+
+                <div class="section" id="contact">
+                    <div class="section-number">08</div>
+                    <h2>Contact Us</h2>
+                    <p>
+                        If you have any questions about this Privacy Policy or
+                        how DeskFit AI handles your data, please reach out:
+                    </p>
+                    <div class="contact-card">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-text">
+                            <p style="font-weight: 500; margin-bottom: 4px">
+                                tessbuild — DeskFit AI Developer
+                            </p>
+                            <p>
+                                <a href="mailto:support@tessbuild.com" style="color: var(--accent2); text-decoration: none; font-weight: 500;">support@tessbuild.com</a>
+                            </p>
+                            <p
+                                style="
+                                    font-size: 13px;
+                                    color: var(--muted);
+                                    margin-top: 4px;
+                                "
+                            >
+                                We aim to respond within 48 hours.
+                            </p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 24px">
+                        We may update this Privacy Policy from time to time.
+                        Changes will be reflected with a new effective date at
+                        the top of this page. Continued use of DeskFit AI after
+                        changes constitutes acceptance of the updated policy.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="wrap">
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+                <p class="footer-copy">
+                    © 2026 tessbuild · DeskFit AI · All rights reserved
+                </p>
+            </div>
+        </footer>
+
+        <script>
+            const sections = document.querySelectorAll(".section");
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) e.target.classList.add("visible");
+                    });
+                },
+                { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+            );
+            sections.forEach((s) => observer.observe(s));
+
+            document.querySelectorAll('a[href^="#"]').forEach((a) => {
+                a.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(
+            

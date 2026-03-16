@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — DeskFit AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: rgba(255,255,255,0.07);
+      --accent: #6c63ff;
+      --accent2: #00d4aa;
+      --text: #e8e8f0;
+      --muted: rgba(232,232,240,0.45);
+      --radius: 16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── Background texture ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 10% 0%, rgba(108,99,255,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 90% 100%, rgba(0,212,170,0.08) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(10,10,15,0.85);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
+    .header-badge {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ── Main layout ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 24px 100px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      margin-bottom: 56px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--accent2);
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .meta-item strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 48px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .section:nth-child(2)  { animation-delay: 0.05s; }
+    .section:nth-child(3)  { animation-delay: 0.10s; }
+    .section:nth-child(4)  { animation-delay: 0.15s; }
+    .section:nth-child(5)  { animation-delay: 0.20s; }
+    .section:nth-child(6)  { animation-delay: 0.25s; }
+    .section:nth-child(7)  { animation-delay: 0.30s; }
+    .section:nth-child(8)  { animation-delay: 0.35s; }
+    .section:nth-child(9)  { animation-delay: 0.40s; }
+    .section:nth-child(10) { animation-delay: 0.45s; }
+
+    .section-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: rgba(232,232,240,0.72);
+      margin-bottom: 14px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      margin: 12px 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    li {
+      font-size: 0.95rem;
+      color: rgba(232,232,240,0.72);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ── Highlight card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin: 20px 0;
+    }
+
+    .card.accent-border {
+      border-left: 3px solid var(--accent);
+    }
+
+    .card.green-border {
+      border-left: 3px solid var(--accent2);
+    }
+
+    /* ── Contact section ── */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(0,212,170,0.08));
+      border: 1px solid rgba(108,99,255,0.25);
+      border-radius: var(--radius);
+      padding: 32px;
+      text-align: center;
+      margin-top: 56px;
+    }
+
+    .contact-card h2 {
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      margin-bottom: 20px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 100px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .contact-link:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px 24px 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(232,232,240,0.28);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      header { padding: 16px 20px; }
+      main   { padding: 48px 20px 80px; }
+      .hero  { margin-bottom: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/" class="logo">tessbuild</a>
+    <span class="header-badge">DeskFit AI</span>
+  </header>
+
+  <main>
+
+    <div class="hero">
+      <div class="hero-label">Legal</div>
+      <h1>Terms of Service</h1>
+      <div class="hero-meta">
+        <span class="meta-item"><strong>Effective:</strong> March 12, 2026</span>
+        <span class="meta-item"><strong>Developer:</strong> tessbuild</span>
+        <span class="meta-item"><strong>App:</strong> DeskFit AI</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="section-number">01</div>
+      <h2>Acceptance of Terms</h2>
+      <p>By downloading, installing, or using DeskFit AI ("the App"), you agree to be bound by these Terms of Service. If you do not agree to these terms, do not use the App.</p>
+      <p>These Terms apply to all users of DeskFit AI, including free and Pro subscribers.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-number">02</div>
+      <h2>Description of Service</h2>
+      <p>DeskFit AI is a fitness application that uses artificial intelligence to generate personalized workout plans for desk workers. The App provides:</p>
+      <ul>
+        <li>AI-generated workout plans tailored to your location, duration, and fitness goals</li>
+        <li>Guided workout sessions with timers and exercise instructions</li>
+        <li>Progress tracking and workout history</li>
+        <li>Optional Pro subscription for unlimited access</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-number">03</div>
+      <h2>Free Tier &amp; Pro Subscription</h2>
+      <p>DeskFit AI offers a free tier that allows you to complete up to 3 workouts at no cost. Additional workouts require a Pro subscription.</p>
+      <div class="card green-border">
+        <p><strong>Pro plans available:</strong></p>
+        <ul>
+          <li>Monthly — $2.99 / month</li>
+          <li>Yearly — $14.99 / year (~$1.25/mo, save 58%)</li>
+          <li>Lifetime — $29.99 one-time purchase</li>
+        </ul>
+      </div>
+      <p>Subscriptions are managed through Apple's App Store. Payment is charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period.</p>
+      <p>You can manage or cancel your subscription at any time through your Apple ID account settings.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-number">04</div>
+      <h2>Health &amp; Fitness Disclaimer</h2>
+      <div class="card accent-border">
+        <p>DeskFit AI is designed for general wellness and light fitness activity. The App is <strong>not a substitute for professional medical advice, diagnosis, or treatment.</strong></p>
+      </div>
+      <p>Before starting any new exercise program, consult your physician or a qualified health professional, especially if you have any pre-existing medical conditions, injuries, or health concerns.</p>
+      <p>By using the App, you acknowledge that:</p>
+      <ul>
+        <li>Exercise involves inherent risk of injury</li>
+        <li>You are solely responsible for how you perform exercises</li>
+        <li>Calorie estimates are approximations only and not medically accurate</li>
+        <li>AI-generated workout plans are general suggestions, not personalized medical advice</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-number">05</div>
+      <h2>AI-Generated Content</h2>
+      <p>Workout plans in DeskFit AI are generated using artificial intelligence. While we strive for quality and safety, AI-generated content may occasionally contain errors, inappropriate suggestions, or plans that are not suitable for your specific condition.</p>
+      <p>tessbuild makes no warranty that AI-generated workout plans will be accurate, complete, or appropriate for your individual needs.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-number">06</div>
+      <h2>User Conduct</h2>
+      <p>You agree to use DeskFit AI only for lawful purposes and in accordance with these Terms. You agree not to:</p>
+      <ul>
+        <li>Attempt to reverse engineer, decompile, or tamper with the App</li>
+        <li>Use the App in any way that could damage or impair its functionality</li>
+        <li>Circumvent any access controls, paywalls, or usage limits</li>
+        <li>Use the App for any commercial purpose without written permission</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-number">07</div>
+      <h2>Intellectual Property</h2>
+      <p>DeskFit AI and all its content, features, and functionality — including but not limited to the design, code, graphics, and AI-generated plans — are owned by tessbuild and are protected by applicable intellectual property laws.</p>
+      <p>You are granted a limited, non-exclusive, non-transferable license to use the App for personal, non-commercial purposes.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-number">08</div>
+      <h2>Privacy</h2>
+      <p>Your privacy matters to us. Our Privacy Policy explains how we collect, use, and protect your information when you use DeskFit AI.</p>
+      <p>By using the App, you agree to the collection and use of information as described in our <a href="privacy.html" style="color: var(--accent2); text-decoration: none; font-weight: 500;">Privacy Policy</a>.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-number">09</div>
+      <h2>Limitation of Liability</h2>
+      <p>To the maximum extent permitted by applicable law, tessbuild shall not be liable for any indirect, incidental, special, consequential, or punitive damages — including but not limited to personal injury, property damage, loss of data, or loss of profits — arising out of or related to your use of DeskFit AI.</p>
+      <p>tessbuild's total liability to you for any claims arising from these Terms or your use of the App shall not exceed the amount you paid for the App in the twelve months preceding the claim.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-number">10</div>
+      <h2>Disclaimer of Warranties</h2>
+      <p>DeskFit AI is provided "as is" and "as available" without warranties of any kind, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+      <p>tessbuild does not warrant that the App will be uninterrupted, error-free, or free of viruses or other harmful components.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-number">11</div>
+      <h2>Changes to Terms</h2>
+      <p>tessbuild reserves the right to modify these Terms at any time. When we make changes, we will update the effective date at the top of this page. Continued use of the App after changes constitutes your acceptance of the revised Terms.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-number">12</div>
+      <h2>Governing Law</h2>
+      <p>These Terms shall be governed by and construed in accordance with the laws of the State of Texas, United States, without regard to its conflict of law provisions.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-number">13</div>
+      <h2>Termination</h2>
+      <p>tessbuild reserves the right to suspend or terminate your access to DeskFit AI at any time, without notice, for conduct that we believe violates these Terms or is harmful to other users, tessbuild, or third parties.</p>
+    </div>
+
+    <div class="contact-card">
+      <h2>Questions about these Terms?</h2>
+      <p>We're happy to help clarify anything. Reach out anytime.</p>
+      <a href="mailto:support@tessbuild.com" class="contact-link">
+        ✉️ &nbsp;support@tessbuild.com
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms 

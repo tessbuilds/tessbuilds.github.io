@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calma — Wellness for Remote Workers</title>
+<meta name="description" content="Calma helps remote workers check in with themselves, breathe through stress, and understand their emotional patterns over time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #7C3AED;
+    --purple-light: #C084FC;
+    --purple-dim: rgba(124,58,237,0.12);
+    --teal: #14B8A6;
+    --bg: #07080A;
+    --bg2: #0F1013;
+    --card: #131518;
+    --text: #EDE9E0;
+    --muted: #7A7570;
+    --border: rgba(255,255,255,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--purple-light);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.2s, height 0.2s, opacity 0.2s;
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(192,132,252,0.4);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(7,8,10,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--purple-dim);
+    border: 1px solid rgba(124,58,237,0.3);
+    color: var(--purple-light) !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: rgba(124,58,237,0.2) !important;
+    color: var(--purple-light) !important;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Animated background rings */
+  .hero-rings {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(124,58,237,0.12);
+    transform: translate(-50%, -50%);
+    animation: ring-pulse 6s ease-in-out infinite;
+  }
+
+  .hero-ring:nth-child(1) { width: 300px; height: 300px; animation-delay: 0s; }
+  .hero-ring:nth-child(2) { width: 500px; height: 500px; animation-delay: 0.5s; border-color: rgba(124,58,237,0.08); }
+  .hero-ring:nth-child(3) { width: 700px; height: 700px; animation-delay: 1s; border-color: rgba(124,58,237,0.05); }
+  .hero-ring:nth-child(4) { width: 900px; height: 900px; animation-delay: 1.5s; border-color: rgba(124,58,237,0.03); }
+  .hero-ring:nth-child(5) { width: 1100px; height: 1100px; animation-delay: 2s; border-color: rgba(124,58,237,0.02); }
+
+  @keyframes ring-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    50% { transform: translate(-50%, -50%) scale(1.04); opacity: 1; }
+  }
+
+  /* Glow blob */
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: glow-breathe 4s ease-in-out infinite;
+  }
+
+  @keyframes glow-breathe {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--purple-light);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fade-up 0.8s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: var(--text);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fade-up 0.8s ease forwards 0.4s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--purple-light);
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto 48px;
+    opacity: 0;
+    animation: fade-up 0.8s ease forwards 0.6s;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: fade-up 0.8s ease forwards 0.8s;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--purple);
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 16px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    border: none;
+    cursor: none;
+  }
+
+  .btn-primary:hover {
+    background: #6D28D9;
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 24px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: none;
+  }
+
+  .btn-ghost:hover {
+    color: var(--text);
+    border-color: rgba(255,255,255,0.15);
+  }
+
+  .hero-note {
+    margin-top: 24px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: fade-up 0.8s ease forwards 1s;
+  }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* App icon */
+  .hero-icon {
+    width: 96px; height: 96px;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #5B21B6, #7C3AED, #A855F7);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 40px;
+    position: relative;
+    opacity: 0;
+    animation: fade-up 0.8s ease forwards 0.1s;
+    box-shadow: 0 20px 60px rgba(124,58,237,0.4);
+  }
+
+  .hero-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.15) 0%, transparent 60%);
+  }
+
+  .icon-rings {
+    position: relative;
+    width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .icon-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.9);
+  }
+
+  .icon-ring-1 { width: 12px; height: 12px; background: rgba(255,255,255,0.95); border: none; }
+  .icon-ring-2 { width: 24px; height: 24px; border-color: rgba(255,255,255,0.6); }
+  .icon-ring-3 { width: 36px; height: 36px; border-color: rgba(255,255,255,0.3); }
+  .icon-ring-4 { width: 48px; height: 48px; border-color: rgba(255,255,255,0.12); }
+
+  /* Section base */
+  section {
+    padding: 120px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--purple-light);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .section-title em { font-style: italic; color: var(--purple-light); }
+
+  .section-sub {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 540px;
+  }
+
+  /* Divider line */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 0 auto;
+    max-width: 1100px;
+  }
+
+  /* Features grid */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .feature-card {
+    background: var(--card);
+    padding: 40px 32px;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(124,58,237,0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .feature-card:hover { background: #161820; }
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .feature-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .feature-body {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* How it works */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .step {
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(124,58,237,0.2);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .step-body {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .step-line {
+    position: absolute;
+    top: 24px;
+    right: -16px;
+    width: 32px;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .step:last-child .step-line { display: none; }
+
+  /* Quote section */
+  .quote-section {
+    text-align: center;
+    padding: 120px 24px;
+    background: linear-gradient(to bottom, transparent, rgba(124,58,237,0.04), transparent);
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.4;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+
+  .quote-author {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* CTA section */
+  .cta-section {
+    text-align: center;
+    padding: 120px 24px 160px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-glow {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .cta-title em { font-style: italic; color: var(--purple-light); }
+
+  .cta-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--text);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-copy {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .footer-disclaimer {
+    width: 100%;
+    font-size: 10px;
+    color: rgba(122,117,112,0.5);
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    margin-top: 8px;
+  }
+
+  /* Free badge */
+  .free-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(20,184,166,0.1);
+    border: 1px solid rgba(20,184,166,0.2);
+    color: var(--teal);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+  }
+
+  .free-badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .features-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .step-line { display: none; }
+    footer { flex-direction: column; align-items: flex-start; }
+    .footer-links { flex-wrap: wrap; gap: 16px; }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">Calma</div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="https://apps.apple.com" class="nav-cta">Download</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-rings">
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+  </div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-icon">
+    <div class="icon-rings">
+      <div class="icon-ring icon-ring-4"></div>
+      <div class="icon-ring icon-ring-3"></div>
+      <div class="icon-ring icon-ring-2"></div>
+      <div class="icon-ring icon-ring-1"></div>
+    </div>
+  </div>
+
+  <p class="hero-eyebrow">For remote workers</p>
+
+  <h1 class="hero-title">
+    Breathe.<br>
+    Reflect.<br>
+    <em>Feel better.</em>
+  </h1>
+
+  <p class="hero-sub">
+    Calma helps you check in with yourself, breathe through stress,
+    and understand your emotional patterns — one quiet moment at a time.
+  </p>
+
+  <div class="hero-actions">
+    <div class="free-badge">
+      <div class="free-badge-dot"></div>
+      Free during launch
+    </div>
+  </div>
+
+  <div class="hero-actions">
+    <a href="https://apps.apple.com" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+      </svg>
+      Download on App Store
+    </a>
+    <a href="#features" class="btn-ghost">
+      Learn more ↓
+    </a>
+  </div>
+
+  <p class="hero-note">iOS 17+ · Free · No account required</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- Features -->
+<section id="features">
+  <div class="reveal">
+    <p class="section-eyebrow">What Calma does</p>
+    <h2 class="section-title">Everything you need.<br><em>Nothing you don't.</em></h2>
+    <p class="section-sub">Built for remote workers who want a simple, private way to stay emotionally grounded during the workday.</p>
+  </div>
+
+  <div class="features-grid reveal">
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(124,58,237,0.12);">💜</div>
+      <div class="feature-title">Mood Check-In</div>
+      <div class="feature-body">Log how you're feeling in 30 seconds. A simple 1–5 scale with an optional journal prompt. No sign-up, no cloud, no tracking.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(20,184,166,0.12);">💨</div>
+      <div class="feature-title">Breathing Sessions</div>
+      <div class="feature-body">Guided 4-7-8 breathing with an animated ring. Three cycles is all it takes to feel noticeably calmer. Works anywhere.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(249,115,22,0.12);">✦</div>
+      <div class="feature-title">Coping Suggestions</div>
+      <div class="feature-body">After every check-in, get three tailored suggestions based on how you scored. 45 unique suggestions across all mood states.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(34,197,94,0.12);">📈</div>
+      <div class="feature-title">Mood Insights</div>
+      <div class="feature-body">A 7-day chart shows your emotional patterns over time. See trends, averages, and AI-detected patterns from your history.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(251,146,60,0.12);">🔥</div>
+      <div class="feature-title">Streak Tracking</div>
+      <div class="feature-body">Daily check-in streaks build the habit. Hit 7 days and earn a milestone badge. Small rituals compound into real change.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(244,63,94,0.12);">🔒</div>
+      <div class="feature-title">100% Private</div>
+      <div class="feature-body">All data lives on your device. No account. No cloud sync. No ads. Calma will never sell your data — ever.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- How it works -->
+<section id="how">
+  <div class="reveal">
+    <p class="section-eyebrow">How it works</p>
+    <h2 class="section-title">A quiet ritual.<br><em>Every day.</em></h2>
+  </div>
+
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Check in</div>
+      <div class="step-body">Rate your mood 1–5 and write a sentence or two in the journal. Takes 30 seconds.</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Get suggestions</div>
+      <div class="step-body">Calma surfaces three coping actions tailored to exactly how you're feeling right now.</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Breathe</div>
+      <div class="step-body">If you're stressed, one breathing session resets your nervous system in under 3 minutes.</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">See patterns</div>
+      <div class="step-body">Over time, your insights chart reveals what's driving your mood — and what helps.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Quote -->
+<div class="quote-section reveal">
+  <p class="quote-text">"Almost everything will work again if you unplug it for a few minutes — including you."</p>
+  <p class="quote-author">— Anne Lamott</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<div class="cta-section reveal">
+  <div class="cta-glow"></div>
+  <p class="section-eyebrow">Free during launch</p>
+  <h2 class="cta-title">Start feeling<br><em>better today.</em></h2>
+  <p class="cta-sub">No account. No credit card. Just download and start.</p>
+  <a href="https://apps.apple.com" class="btn-primary">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+    </svg>
+    Download on App Store
+  </a>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">Calma</div>
+  <ul class="footer-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Use</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#5e2d2b2e2e312c2a1e2a3b2d2d3c2b37323a2d703d3133">Support</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 tessbuild</p>
+  <p class="footer-disclaimer">
+    Calma is not a medical or mental health service. It is designed for personal reflection only and does not replace professional care. If you are experiencing a mental health crisis, please contact a qualified healthcare provider or emergency services.
+  </p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '16px';
+      cursor.style.height = '16px';
+      ring.style.width = '48px';
+      ring.style.height = '48px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '8px';
+      cursor.style.height = '8px';
+      ring.style.width = '32px';
+      ring.style.height = '32px';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible'

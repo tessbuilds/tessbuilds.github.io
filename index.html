@@ -135,7 +135,7 @@
 
     .apps-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
@@ -154,8 +154,6 @@
       color: inherit;
     }
     .app-card:hover { background: #161619; }
-    .app-card.coming-soon { cursor: default; }
-    .app-card.coming-soon:hover { background: var(--surface); }
 
     .app-icon {
       width: 56px;
@@ -220,6 +218,9 @@
       background: var(--live);
       animation: blink 2.5s ease-in-out infinite;
     }
+
+    .app-card.coming-soon { cursor: default; }
+    .app-card.coming-soon:hover { background: var(--surface); }
 
     .badge-soon {
       color: var(--soon);
@@ -310,6 +311,10 @@
       .hero { padding: 56px 0 64px; }
     }
 
+    @media (max-width: 540px) {
+      .apps-grid { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 480px) {
       .wrap { padding: 0 20px; }
       nav { padding: 20px 0; }
@@ -321,7 +326,7 @@
   <div class="wrap">
     <nav>
       <a href="/" class="nav-logo">tessbuild</a>
-      <a href="mailto:support@tessbuild.com" class="nav-contact">support@tessbuild.com</a>
+      <a href="/cdn-cgi/l/email-protection#2754525757485553675342545445524e4b430944484a" class="nav-contact"><span class="__cf_email__" data-cfemail="41323431312e333501352432322334282d256f222e2c">[email&#160;protected]</span></a>
     </nav>
   </div>
 
@@ -338,7 +343,7 @@
       <div class="section-label">Apps</div>
       <div class="apps-grid">
 
-        <a href="calma/index.html" class="app-card">
+        <a href="https://apps.apple.com/us/app/calma-mood-breathing/id6760365372" class="app-card" target="_blank" rel="noopener">
           <div class="app-icon">
             <img src="assets/calma-icon.png" alt="Calma" />
           </div>
@@ -349,7 +354,7 @@
           <span class="app-badge badge-live">Live on App Store</span>
         </a>
 
-        <div class="app-card coming-soon">
+        <a href="https://apps.apple.com/us/app/deskfit-ai/id6760520390" class="app-card" target="_blank" rel="noopener">
           <div class="app-icon">
             <img src="assets/deskfit-icon.svg" alt="DeskFit AI" />
           </div>
@@ -357,16 +362,27 @@
             <div class="app-name">DeskFit AI</div>
             <div class="app-desc">AI-generated desk workouts for people who sit all day. No equipment needed.</div>
           </div>
-          <span class="app-badge badge-soon">Coming Soon</span>
-        </div>
+          <span class="app-badge badge-live">Live on App Store</span>
+        </a>
+
+        <a href="https://apps.apple.com/us/app/stackready-interview-practice/id6760689462" class="app-card" target="_blank" rel="noopener">
+          <div class="app-icon">
+            <img src="assets/stackready-icon.png" alt="StackReady" />
+          </div>
+          <div class="app-meta">
+            <div class="app-name">StackReady</div>
+            <div class="app-desc">AI-powered technical interview practice. Prep smarter, land the role.</div>
+          </div>
+          <span class="app-badge badge-live">Live on App Store</span>
+        </a>
 
         <div class="app-card coming-soon">
           <div class="app-icon">
-            <img src="assets/prepai-icon.png" alt="PrepAI" />
+            <img src="assets/littlepath-icon.png" alt="LittlePath" />
           </div>
           <div class="app-meta">
-            <div class="app-name">PrepAI</div>
-            <div class="app-desc">AI-powered interview preparation. Practice smarter, land the role.</div>
+            <div class="app-name">LittlePath</div>
+            <div class="app-desc">Personalized daily activity plans for young children. Built for parents who want more than screen time.</div>
           </div>
           <span class="app-badge badge-soon">Coming Soon</span>
         </div>
@@ -381,7 +397,7 @@
         <h2 class="about-title">Built by one person,<br/>for real problems.</h2>
         <div class="about-body">
           <p>tessbuild is an independent iOS development studio focused on building small, purposeful apps. Each app solves a specific problem — no bloat, no subscriptions you'll forget, no data you didn't agree to share.</p>
-          <p>Have a question, a bug to report, or just want to say hi? Reach out at <a href="mailto:support@tessbuild.com" style="color: var(--text); text-decoration: underline; text-decoration-color: var(--border2);">support@tessbuild.com</a> — real replies from a real person.</p>
+          <p>Have a question, a bug to report, or just want to say hi? Reach out at <a href="/cdn-cgi/l/email-protection#ccbfb9bcbca3beb88cb8a9bfbfaeb9a5a0a8e2afa3a1" style="color: var(--text); text-decoration: underline; text-decoration-color: var(--border2);"><span class="__cf_email__" data-cfemail="7d0e080d0d120f093d09180e0e1f08141119531e1210">[email&#160;protected]</span></a> — real replies from a real person.</p>
         </div>
       </div>
     </div>
@@ -392,7 +408,9 @@
       <div class="footer-inner">
         <a href="/" class="footer-logo">tessbuild</a>
         <div class="footer-links">
-          <a href="calma/index.html">Calma</a>
+          <a href="https://apps.apple.com/us/app/calma-mood-breathing/id6760365372" target="_blank" rel="noopener">Calma</a>
+          <a href="https://apps.apple.com/us/app/deskfit-ai/id6760520390" target="_blank" rel="noopener">DeskFit AI</a>
+          <a href="https://apps.apple.com/us/app/stackready-interview-practice/id6760689462" target="_blank" rel="noopener">StackReady</a>
           <a href="privacy.html">Privacy Policy</a>
           <a href="terms.html">Terms of Service</a>
           <a href="mailto:support@tessbuild.com">Contact</a>

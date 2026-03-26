@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — tessbuild</title>
+  <meta name="description" content="Terms of service for tessbuild iOS apps: Calma, DeskFit AI, StackReady, and LittlePath." />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0c0c0e;
+      --surface:  #131316;
+      --border:   rgba(255,255,255,0.07);
+      --border2:  rgba(255,255,255,0.12);
+      --text:     #f0efe8;
+      --muted:    rgba(240,239,232,0.4);
+      --muted2:   rgba(240,239,232,0.6);
+      --live:     #b8f5b0;
+      --live-bg:  rgba(184,245,176,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    nav {
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-back {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .page-header {
+      padding: 64px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .page-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .page-meta {
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+    }
+
+    .apps-covered {
+      margin-top: 24px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .app-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      color: var(--live);
+      background: var(--live-bg);
+      border: 1px solid rgba(184,245,176,0.2);
+    }
+
+    .content {
+      padding: 56px 0 100px;
+    }
+
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section p {
+      font-size: 0.9rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    .section ul {
+      margin: 10px 0 12px 0;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .section ul li {
+      font-size: 0.9rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    .highlight-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-top: 16px;
+    }
+
+    .highlight-box p {
+      font-size: 0.9rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 0 !important;
+    }
+
+    .highlight-box a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--border2);
+      transition: text-decoration-color 0.2s;
+    }
+    .highlight-box a:hover { text-decoration-color: var(--text); }
+
+    .section a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--border2);
+      transition: text-decoration-color 0.2s;
+    }
+    .section a:hover { text-decoration-color: var(--text); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 40px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(240,239,232,0.2);
+    }
+
+    @media (max-width: 480px) {
+      .wrap { padding: 0 20px; }
+      nav { padding: 20px 0; }
+      .page-header { padding: 48px 0 40px; }
+      .highlight-box { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <nav>
+      <a href="/" class="nav-logo">tessbuild</a>
+      <a href="/" class="nav-back">← All Apps</a>
+    </nav>
+  </div>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="page-eyebrow">Legal</div>
+      <h1 class="page-title">Terms of Service</h1>
+      <div class="page-meta">Last updated: March 2026</div>
+      <div class="apps-covered">
+        <span class="app-tag">Calma</span>
+        <span class="app-tag">DeskFit AI</span>
+        <span class="app-tag">StackReady</span>
+        <span class="app-tag">LittlePath</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="content">
+    <div class="wrap">
+
+      <div class="section">
+        <h2 class="section-title">Acceptance of Terms</h2>
+        <p>By downloading or using any app published by tessbuild — including Calma, DeskFit AI, StackReady, and LittlePath — you agree to these Terms of Service. If you do not agree, please do not use our apps.</p>
+        <p>These terms apply to all tessbuild apps unless a specific app provides its own supplemental terms, in which case both apply.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Use of Our Apps</h2>
+        <p>Our apps are provided for personal, non-commercial use. By using them, you agree to:</p>
+        <ul>
+          <li>Use the apps only for their intended purpose</li>
+          <li>Not reverse engineer, decompile, or attempt to extract source code</li>
+          <li>Not use the apps in any way that violates applicable laws or regulations</li>
+          <li>Not attempt to interfere with the functionality or security of the apps</li>
+        </ul>
+        <p>We reserve the right to discontinue or modify any app at any time without notice.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">In-App Purchases & Subscriptions</h2>
+        <p>Some apps offer optional in-app purchases or subscriptions to unlock premium features. All transactions are processed by Apple via the App Store and are subject to <a href="https://www.apple.com/legal/internet-services/itunes/us/terms.html" target="_blank" rel="noopener">Apple's Terms of Sale</a>.</p>
+        <ul>
+          <li><strong style="color: var(--text); font-weight: 500;">Subscriptions</strong> automatically renew unless cancelled at least 24 hours before the end of the current billing period.</li>
+          <li><strong style="color: var(--text); font-weight: 500;">Cancellations</strong> can be managed through your Apple ID settings. Cancelling stops future charges but does not refund the current period.</li>
+          <li><strong style="color: var(--text); font-weight: 500;">Refunds</strong> are handled by Apple. We do not process refunds directly. Contact Apple Support for refund requests.</li>
+          <li><strong style="color: var(--text); font-weight: 500;">Lifetime purchases</strong> are one-time payments that grant access for as long as the app is available.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">AI-Generated Content</h2>
+        <p>Several tessbuild apps (DeskFit AI, StackReady, Calma, and LittlePath) use artificial intelligence to generate content such as workout routines, interview questions, breathing exercises, and activity plans.</p>
+        <p>By using AI features in our apps, you acknowledge that:</p>
+        <ul>
+          <li>AI-generated content is for informational and entertainment purposes only</li>
+          <li>Workout and exercise suggestions are not a substitute for professional medical or fitness advice</li>
+          <li>Interview practice content does not guarantee employment outcomes</li>
+          <li>Activity suggestions for children are not a substitute for professional child development guidance</li>
+          <li>We are not responsible for decisions made based on AI-generated content</li>
+        </ul>
+        <p>Always consult a qualified professional before starting a new exercise program or making significant decisions based on app content.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Intellectual Property</h2>
+        <p>All content, design, code, and assets within tessbuild apps are the property of tessbuild and are protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works from any part of our apps without written permission.</p>
+        <p>AI-generated content produced within our apps is generated on your behalf for your personal use. You are responsible for how you use that content.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Disclaimer of Warranties</h2>
+        <p>Our apps are provided "as is" and "as available" without warranties of any kind, either express or implied. We do not warrant that the apps will be uninterrupted, error-free, or free of harmful components.</p>
+        <p>We make no warranties regarding the accuracy, reliability, or completeness of any AI-generated content produced by our apps.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Limitation of Liability</h2>
+        <p>To the fullest extent permitted by law, tessbuild shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our apps, including but not limited to loss of data, personal injury, or financial loss.</p>
+        <p>Our total liability for any claim arising from use of our apps shall not exceed the amount you paid for the app or in-app purchase giving rise to the claim.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Changes to These Terms</h2>
+        <p>We may update these Terms of Service from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of our apps after changes constitutes acceptance of the updated terms.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Governing Law</h2>
+        <p>These terms are governed by the laws of the State of Texas, United States, without regard to its conflict of law provisions. Any disputes arising from these terms shall be resolved in the courts of Texas.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Contact</h2>
+        <div class="highlight-box">
+          <p>Questions about these terms? Get in touch — you'll hear back from a real person.</p>
+          <p style="margin-top: 12px !important;">Email: <a href="mailto:support&#64;tessbuild.com">support&#64;tessbuild.com</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <a href="/" class="footer-logo">tessbuild</a>
+        <div class="footer-links">
+          <a href="https://apps.apple.com/us/app/calma-mood-breathing/id6760365372" target="_blank" rel="noopener">Calma</a>
+          <a href="https://apps.apple.com/us/app/deskfit-ai/id6760520390" target="_blank" rel="noopener">DeskFit AI</a>
+          <a href="https://apps.apple.com/us/app/stackready-interview-practice/id6760689462" target="_blank" rel="noopener">StackReady</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="mailto:support&#64;tessbuild.com">Contact</a>
+        </div>
+        <span class="footer-copy">© 2026 tessbuild</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

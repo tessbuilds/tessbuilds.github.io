@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — tessbuild</title>
+  <meta name="description" content="Privacy policy for tessbuild iOS apps: Calma, DeskFit AI, and StackReady." />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0c0c0e;
+      --surface:  #131316;
+      --border:   rgba(255,255,255,0.07);
+      --border2:  rgba(255,255,255,0.12);
+      --text:     #f0efe8;
+      --muted:    rgba(240,239,232,0.4);
+      --muted2:   rgba(240,239,232,0.6);
+      --live:     #b8f5b0;
+      --live-bg:  rgba(184,245,176,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    nav {
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-back {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .page-header {
+      padding: 64px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .page-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .page-meta {
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+    }
+
+    .apps-covered {
+      margin-top: 24px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .app-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      color: var(--live);
+      background: var(--live-bg);
+      border: 1px solid rgba(184,245,176,0.2);
+    }
+
+    .content {
+      padding: 56px 0 100px;
+    }
+
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section p {
+      font-size: 0.9rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    .section ul {
+      margin: 10px 0 12px 0;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .section ul li {
+      font-size: 0.9rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-top: 16px;
+    }
+
+    .contact-box p {
+      font-size: 0.9rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 0 !important;
+    }
+
+    .contact-box a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--border2);
+      transition: text-decoration-color 0.2s;
+    }
+    .contact-box a:hover { text-decoration-color: var(--text); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 40px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(240,239,232,0.2);
+    }
+
+    @media (max-width: 480px) {
+      .wrap { padding: 0 20px; }
+      nav { padding: 20px 0; }
+      .page-header { padding: 48px 0 40px; }
+      .contact-box { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <nav>
+      <a href="/" class="nav-logo">tessbuild</a>
+      <a href="/" class="nav-back">← All Apps</a>
+    </nav>
+  </div>
+
+  <section class="page-header">
+    <div class="wrap">
+      <div class="page-eyebrow">Legal</div>
+      <h1 class="page-title">Privacy Policy</h1>
+      <div class="page-meta">Last updated: March 2026</div>
+      <div class="apps-covered">
+        <span class="app-tag">Calma</span>
+        <span class="app-tag">DeskFit AI</span>
+        <span class="app-tag">StackReady</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="content">
+    <div class="wrap">
+
+      <div class="section">
+        <h2 class="section-title">Overview</h2>
+        <p>tessbuild builds small, focused iOS apps. This privacy policy applies to all apps published under the tessbuild name, including Calma, DeskFit AI, and StackReady.</p>
+        <p>The short version: we collect as little data as possible, we don't sell your data, and we don't share it with advertisers.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Information We Collect</h2>
+        <p>Our apps are designed to work primarily on-device. Depending on the app, we may collect:</p>
+        <ul>
+          <li><strong style="color: var(--text); font-weight: 500;">Data you enter directly</strong> — such as mood logs, workout preferences, or interview practice responses. This data is stored locally on your device and is not transmitted to our servers.</li>
+          <li><strong style="color: var(--text); font-weight: 500;">AI-generated content requests</strong> — apps that use AI features (DeskFit AI, StackReady, Calma) send your input to the Claude API (Anthropic) to generate responses. This data is processed by Anthropic and subject to their privacy policy.</li>
+          <li><strong style="color: var(--text); font-weight: 500;">Purchase information</strong> — if you make an in-app purchase, the transaction is handled entirely by Apple via StoreKit. We do not receive your payment details.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Information We Do Not Collect</h2>
+        <ul>
+          <li>We do not require account creation or login</li>
+          <li>We do not collect your name, email, or contact information</li>
+          <li>We do not use advertising SDKs or track you across apps</li>
+          <li>We do not sell or share your data with third parties for marketing</li>
+          <li>We do not use analytics tools that track individual behavior</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Third-Party Services</h2>
+        <p>Our apps integrate with the following third-party services:</p>
+        <ul>
+          <li><strong style="color: var(--text); font-weight: 500;">Anthropic (Claude API)</strong> — used to generate AI responses in DeskFit AI, StackReady, and Calma. Input you provide to AI features is sent to Anthropic's servers. See <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener" style="color: var(--text); text-decoration: underline; text-decoration-color: var(--border2);">Anthropic's Privacy Policy</a>.</li>
+          <li><strong style="color: var(--text); font-weight: 500;">Apple App Store / StoreKit</strong> — handles all in-app purchases and subscriptions. We do not process payments directly.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Data Storage & Security</h2>
+        <p>All personal data you enter into our apps is stored locally on your device using iOS system storage (SwiftData / UserDefaults). We do not operate servers that store your personal data.</p>
+        <p>If you delete an app, all locally stored data is removed from your device.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Children's Privacy</h2>
+        <p>Our apps are not directed at children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us and we will take steps to delete it.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Changes to This Policy</h2>
+        <p>We may update this privacy policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of our apps after changes constitutes acceptance of the updated policy.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-box">
+          <p>Questions about this privacy policy or how we handle data? Reach out — you'll get a reply from a real person.</p>
+          <p style="margin-top: 12px !important;">Email: <a href="mailto:support&#64;tessbuild.com">support&#64;tessbuild.com</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <a href="/" class="footer-logo">tessbuild</a>
+        <div class="footer-links">
+          <a href="https://apps.apple.com/us/app/calma-mood-breathing/id6760365372" target="_blank" rel="noopener">Calma</a>
+          <a href="https://apps.apple.com/us/app/deskfit-ai/id6760520390" target="_blank" rel="noopener">DeskFit AI</a>
+          <a href="https://apps.apple.com/us/app/stackready-interview-practice/id6760689462" target="_blank" rel="noopener">StackReady</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="mailto:support&#64;tessbuild.com">Contact</a>
+        </div>
+        <span class="footer-copy">© 2026 tessbuild</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

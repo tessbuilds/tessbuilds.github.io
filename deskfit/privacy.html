@@ -246,14 +246,6 @@
             .section {
                 padding: 48px 0;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-                opacity: 0;
-                transform: translateY(24px);
-                transition:
-                    opacity 0.5s ease,
-                    transform 0.5s ease;
-            }
-
-            .section.visible {
                 opacity: 1;
                 transform: translateY(0);
             }
@@ -459,7 +451,7 @@
                 <div class="hero-meta">
                     <div class="meta-item">
                         <div class="meta-dot"></div>
-                        Effective: March 12, 2026
+                        Effective: April 7, 2026
                     </div>
                     <div class="meta-item">
                         <div
@@ -716,7 +708,7 @@
                                 tessbuild — DeskFit AI Developer
                             </p>
                             <p>
-                                <a href="mailto:support@tessbuild.com" style="color: var(--accent2); text-decoration: none; font-weight: 500;">support@tessbuild.com</a>
+                                <a href="/cdn-cgi/l/email-protection#63101613130c111745405557581706101001160a0f074d000c0e" style="color: var(--accent2); text-decoration: none; font-weight: 500;">support&#64;tessbuild.com</a>
                             </p>
                             <p
                                 style="
@@ -752,20 +744,8 @@
             </div>
         </footer>
 
-        <script>
-            const sections = document.querySelectorAll(".section");
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((e) => {
-                        if (e.isIntersecting) e.target.classList.add("visible");
-                    });
-                },
-                { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
-            );
-            sections.forEach((s) => observer.observe(s));
-
-            document.querySelectorAll('a[href^="#"]').forEach((a) => {
-                a.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    const target = document.querySelector(
-            
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // No animation needed - sections visible by default
+</script>
+</body>
+</html>

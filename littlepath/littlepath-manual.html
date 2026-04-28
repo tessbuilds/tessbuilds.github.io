@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LittlePath User Manual</title>
+  <meta name="description" content="Complete guide to using LittlePath — the Montessori parenting app." />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0c0c0e;
+      --surface:  #131316;
+      --border:   rgba(255,255,255,0.07);
+      --border2:  rgba(255,255,255,0.12);
+      --text:     #f0efe8;
+      --muted:    rgba(240,239,232,0.4);
+      --muted2:   rgba(240,239,232,0.6);
+      --accent:   #7F77DD;
+      --teal:     #1D9E75;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    nav {
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-back {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* Header */
+    .manual-header {
+      padding: 64px 0 80px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .manual-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .manual-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .manual-sub {
+      font-size: 1rem;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* TOC */
+    .toc {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .toc-list a {
+      font-size: 0.88rem;
+      color: var(--muted2);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s;
+    }
+
+    .toc-list a:hover { color: var(--text); }
+
+    .toc-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      min-width: 20px;
+    }
+
+    /* Sections */
+    .manual-content {
+      padding: 80px 0 100px;
+    }
+
+    .manual-section {
+      margin-bottom: 80px;
+      padding-bottom: 80px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .manual-section:last-child {
+      border-bottom: none;
+    }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .section-body {
+      font-size: 0.92rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .section-body p + p { margin-top: 16px; }
+
+    .section-body strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Step blocks */
+    .steps {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .step {
+      background: var(--surface);
+      padding: 20px 24px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      min-width: 28px;
+      padding-top: 2px;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 0.82rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* Info cards */
+    .info-card {
+      margin-top: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+    }
+
+    .info-card.tip {
+      border-color: rgba(29,158,117,0.25);
+      background: rgba(29,158,117,0.05);
+    }
+
+    .info-card.note {
+      border-color: rgba(127,119,221,0.25);
+      background: rgba(127,119,221,0.05);
+    }
+
+    .info-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .info-card.note .info-label { color: var(--accent); }
+
+    .info-body {
+      font-size: 0.85rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* Feature list */
+    .feature-list {
+      margin-top: 24px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-list li {
+      font-size: 0.88rem;
+      color: var(--muted2);
+      font-weight: 300;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+
+    .feature-list li .fl-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* FAQ */
+    .faq-list {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .faq-item {
+      background: var(--surface);
+      padding: 24px 28px;
+    }
+
+    .faq-q {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .faq-a {
+      font-size: 0.84rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 40px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(240,239,232,0.2);
+    }
+
+    @media (max-width: 600px) {
+      .toc-list { grid-template-columns: 1fr; }
+      .wrap { padding: 0 20px; }
+      nav { padding: 20px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <nav>
+      <a href="../index.html" class="nav-logo">tessbuild</a>
+      <a href="index.html" class="nav-back">← LittlePath</a>
+    </nav>
+  </div>
+
+  <section class="manual-header">
+    <div class="wrap">
+      <div class="manual-eyebrow">LittlePath · User Manual</div>
+      <h1 class="manual-title">How to get the most from LittlePath.</h1>
+      <p class="manual-sub">A complete guide for parents. From setting up your child's profile to reading your behavior insights — everything you need to know.</p>
+    </div>
+  </section>
+
+  <section class="toc">
+    <div class="wrap">
+      <div class="toc-label">Contents</div>
+      <ol class="toc-list">
+        <li><a href="#getting-started"><span class="toc-num">01</span> Getting started</a></li>
+        <li><a href="#behavior-scripts"><span class="toc-num">02</span> Behavior scripts</a></li>
+        <li><a href="#activities"><span class="toc-num">03</span> Activities</a></li>
+        <li><a href="#planner"><span class="toc-num">04</span> Weekly planner</a></li>
+        <li><a href="#insights"><span class="toc-num">05</span> Behavior insights</a></li>
+        <li><a href="#widget"><span class="toc-num">06</span> Home screen widget</a></li>
+        <li><a href="#child-mode"><span class="toc-num">07</span> Child mode</a></li>
+        <li><a href="#premium"><span class="toc-num">08</span> Premium features</a></li>
+        <li><a href="#sync"><span class="toc-num">09</span> iCloud sync</a></li>
+        <li><a href="#faq"><span class="toc-num">10</span> FAQ</a></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="manual-content">
+    <div class="wrap">
+
+      <!-- 01 Getting Started -->
+      <div class="manual-section" id="getting-started">
+        <div class="section-num">01 — Getting started</div>
+        <h2 class="section-heading">Setting up your child's profile.</h2>
+        <div class="section-body">
+          <p>LittlePath uses your child's profile to personalize everything — which scripts appear first, which activities are suggested, and how the planner is built. The more accurate the profile, the better the recommendations.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-content">
+              <div class="step-title">Enter your child's name and birth date</div>
+              <div class="step-desc">The app calculates developmental stage automatically from the birth date — infant, toddler, early preschool, preschool, or primary age.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-content">
+              <div class="step-title">Select their temperament</div>
+              <div class="step-desc">Choose from Spirited, Sensitive, Slow to warm, or Easygoing. This is the single most important field — it affects script ranking more than any other factor.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-content">
+              <div class="step-title">Set energy level and sensory flags</div>
+              <div class="step-desc">High-energy children benefit from movement-based scripts and activities. Sensory flags (sound sensitive, touch averse, etc.) filter out unsuitable activities automatically.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div class="step-content">
+              <div class="step-title">Add school schedule (if applicable)</div>
+              <div class="step-desc">If your child attends school, select which days. The app uses this to detect after-school fatigue windows — the hardest hour of any school day.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">05</div>
+            <div class="step-content">
+              <div class="step-title">Choose your parenting approach</div>
+              <div class="step-desc">Montessori-inspired, gentle parenting, or balanced. This influences the tone and style of scripts shown.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card tip">
+          <div class="info-label">Tip</div>
+          <div class="info-body">You can update your child's profile at any time by tapping the avatar in the top right of the Today tab. Profiles improve as your child grows — update the birth date information is already there, but revisit temperament and energy level every few months.</div>
+        </div>
+      </div>
+
+      <!-- 02 Behavior Scripts -->
+      <div class="manual-section" id="behavior-scripts">
+        <div class="section-num">02 — Behavior scripts</div>
+        <h2 class="section-heading">Using behavior scripts in the moment.</h2>
+        <div class="section-body">
+          <p>Behavior scripts are the core of LittlePath. When your child is having a hard moment, tap <strong>Behavior</strong> in the tab bar, select what's happening, and the app surfaces the most relevant scripts for your specific child — right now.</p>
+          <p>Scripts are ranked by a combination of your child's profile, the current time of day, and your usage history. The more you use and rate scripts, the better the ranking becomes.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-content">
+              <div class="step-title">Tap the Behavior tab</div>
+              <div class="step-desc">The heart icon in the tab bar. You'll see a list of 13 behavior types — from meltdowns and tantrums to meal refusal and separation anxiety.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-content">
+              <div class="step-title">Select what's happening</div>
+              <div class="step-desc">Tap the behavior type that matches the current situation. Scripts are loaded and ranked immediately.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-content">
+              <div class="step-title">Read the top script</div>
+              <div class="step-desc">The first script is the best match for your child right now. Read the full script — it tells you exactly what to say and do, step by step.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div class="step-content">
+              <div class="step-title">Log the behavior</div>
+              <div class="step-desc">After using a script, log the behavior. This records the time, day, and context — building the data that powers your Insights tab over time.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">05</div>
+            <div class="step-content">
+              <div class="step-title">Rate the script</div>
+              <div class="step-desc">Was it helpful, somewhat helpful, or didn't help? Your rating feeds directly into future rankings — scripts that work for your child rise to the top.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card note">
+          <div class="info-label">How ranking works</div>
+          <div class="info-body">The app scores each script based on: developmental stage match (3 points), temperament match (2 points), historical helpfulness from your ratings (4 points), recency of helpful use (1 point), and fatigue window context (0.5 points each). Scripts rated unhelpful in the last 14 days are penalized by 2 points. The highest-scoring script appears first.</div>
+        </div>
+      </div>
+
+      <!-- 03 Activities -->
+      <div class="manual-section" id="activities">
+        <div class="section-num">03 — Activities</div>
+        <h2 class="section-heading">Finding the right Montessori activity.</h2>
+        <div class="section-body">
+          <p>LittlePath includes 55 Montessori activities across five areas: practical life, sensorial, language, nature and science, and art. Every activity is matched to your child's developmental stage and filtered by their sensory flags.</p>
+        </div>
+
+        <ul class="feature-list">
+          <li>
+            <span class="fl-icon">🌿</span>
+            <span><strong>Practical life</strong> — Setting the table, carrying a tray, folding laundry, flower arranging, polishing. Real work with real tools.</span>
+          </li>
+          <li>
+            <span class="fl-icon">🔍</span>
+            <span><strong>Sensorial</strong> — Mystery bag, texture matching, sound cylinders, color sorting. Isolates one sense at a time.</span>
+          </li>
+          <li>
+            <span class="fl-icon">📖</span>
+            <span><strong>Language</strong> — Sandpaper letters, vocabulary baskets, storytelling with figures, object-to-picture matching.</span>
+          </li>
+          <li>
+            <span class="fl-icon">🌱</span>
+            <span><strong>Nature and science</strong> — Slow nature walk, planting seeds, composting, shadow investigation, kitchen science.</span>
+          </li>
+          <li>
+            <span class="fl-icon">🎨</span>
+            <span><strong>Art and creativity</strong> — Watercolour exploration, stamp printing, indoor den building. Process over product.</span>
+          </li>
+        </ul>
+
+        <div class="info-card tip">
+          <div class="info-label">Tip</div>
+          <div class="info-body">After completing an activity, rate your child's enjoyment. Activities they loved will appear more frequently in future suggestions and planner generation. Activities they struggled with will be deprioritised for a while.</div>
+        </div>
+      </div>
+
+      <!-- 04 Planner -->
+      <div class="manual-section" id="planner">
+        <div class="section-num">04 — Weekly planner</div>
+        <h2 class="section-heading">Planning the week ahead.</h2>
+        <div class="section-body">
+          <p>The Planner tab generates a 7-day activity plan tailored to your child. Each activity is assigned to a time of day (morning, afternoon, or evening) based on its energy output and your child's typical schedule.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-content">
+              <div class="step-title">Tap "Generate plan" (Premium)</div>
+              <div class="step-desc">The AI generates a full 7-day plan in seconds, avoiding activities used in the past 14 days to keep things fresh.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-content">
+              <div class="step-title">Review and adjust</div>
+              <div class="step-desc">Tap any slot to swap the suggested activity for a different one. You can also add your own slots manually.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-content">
+              <div class="step-title">Mark activities complete</div>
+              <div class="step-desc">After doing an activity with your child, tap the circle to mark it done. Your completion count and streak update automatically.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card note">
+          <div class="info-label">About streaks</div>
+          <div class="info-body">Your streak counts consecutive days where you've logged at least one behavior event. It resets if you miss a day. The streak is visible on the Today tab, in your child's profile, and on the home screen widget.</div>
+        </div>
+      </div>
+
+      <!-- 05 Insights -->
+      <div class="manual-section" id="insights">
+        <div class="section-num">05 — Behavior insights</div>
+        <h2 class="section-heading">Understanding your child's patterns.</h2>
+        <div class="section-body">
+          <p>The Insights tab (Premium) shows patterns in your child's behavior based on the logs you've recorded. After a few weeks of logging, you'll start to see meaningful patterns — the kind that change how you prepare for the day.</p>
+        </div>
+
+        <ul class="feature-list">
+          <li>
+            <span class="fl-icon">🕐</span>
+            <span><strong>Behaviors by time of day</strong> — A bar chart showing when incidents most commonly occur. Early morning, morning, midday, afternoon, evening, or night.</span>
+          </li>
+          <li>
+            <span class="fl-icon">📅</span>
+            <span><strong>Behaviors by day of week</strong> — See which days are hardest. Many parents discover Monday afternoons are consistently difficult after a weekend of less structure.</span>
+          </li>
+          <li>
+            <span class="fl-icon">📊</span>
+            <span><strong>Most common behaviors</strong> — A ranked list of the behaviors you've logged most often, with frequency counts.</span>
+          </li>
+          <li>
+            <span class="fl-icon">😴</span>
+            <span><strong>Fatigue window correlation</strong> — What percentage of logged behaviors occurred during high-fatigue windows (after-school, no nap). If this is high, the fatigue window is a key trigger for your child.</span>
+          </li>
+          <li>
+            <span class="fl-icon">📤</span>
+            <span><strong>Weekly summary card</strong> — Tap "Share this week" to generate a shareable image card with your week's highlights. Share with your partner, your child's teacher, or keep for your own records.</span>
+          </li>
+        </ul>
+
+        <div class="info-card tip">
+          <div class="info-label">Tip</div>
+          <div class="info-body">Insights become meaningful after 10–15 behavior logs. The first week is about building the habit of logging — the patterns emerge in week two and three. Log consistently and the charts will tell you things you didn't know you knew.</div>
+        </div>
+      </div>
+
+      <!-- 06 Widget -->
+      <div class="manual-section" id="widget">
+        <div class="section-num">06 — Home screen widget</div>
+        <h2 class="section-heading">Today's activities at a glance.</h2>
+        <div class="section-body">
+          <p>The LittlePath widget shows your child's streak and today's planned activities on your home screen — no need to open the app. Available in small (streak + activity count) and medium (streak + first activity title + progress bar) sizes.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-content">
+              <div class="step-title">Long press your home screen</div>
+              <div class="step-desc">Tap the + button in the top left corner to open the widget picker.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-content">
+              <div class="step-title">Search for LittlePath</div>
+              <div class="step-desc">Type "LittlePath" in the search bar. The widget appears with small and medium size options.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-content">
+              <div class="step-title">Add to your home screen</div>
+              <div class="step-desc">Choose your preferred size and tap "Add Widget". Drag it to your preferred position.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card note">
+          <div class="info-label">Widget updates</div>
+          <div class="info-body">The widget refreshes automatically every 30 minutes and immediately when you log a behavior or complete an activity. If the widget shows outdated information, open LittlePath briefly — this triggers an immediate refresh.</div>
+        </div>
+      </div>
+
+      <!-- 07 Child Mode -->
+      <div class="manual-section" id="child-mode">
+        <div class="section-num">07 — Child mode</div>
+        <h2 class="section-heading">Hand the screen to your child safely.</h2>
+        <div class="section-body">
+          <p>Child mode (Premium) shows a simplified, child-friendly view of today's planned activities. When you hand the device to your child, they see large activity cards with pictures and simple instructions — not the full parent interface.</p>
+          <p>To activate: tap the <strong>"Hand to [child's name]"</strong> button on the Today tab. To exit: tap the X in the top right corner.</p>
+        </div>
+
+        <div class="info-card tip">
+          <div class="info-label">Multiple children</div>
+          <div class="info-body">If you have multiple child profiles, tapping the Child Mode button shows a picker — "Who are you handing to?" — so each child sees their own activities. The active profile in the parent view is not changed.</div>
+        </div>
+      </div>
+
+      <!-- 08 Premium -->
+      <div class="manual-section" id="premium">
+        <div class="section-num">08 — Premium features</div>
+        <h2 class="section-heading">Unlocking the full experience.</h2>
+        <div class="section-body">
+          <p>LittlePath is free to download with a meaningful set of free features. Premium unlocks the full experience — all scripts, all activities, smart ranking, and insights.</p>
+        </div>
+
+        <ul class="feature-list">
+          <li><span class="fl-icon">✓</span><span><strong>All 47 behavior scripts</strong> — Free includes 5 per behavior type.</span></li>
+          <li><span class="fl-icon">✓</span><span><strong>All 55 Montessori activities</strong> — Free includes 10.</span></li>
+          <li><span class="fl-icon">✓</span><span><strong>Smart script ranking</strong> — Personalized to your child's profile and history.</span></li>
+          <li><span class="fl-icon">✓</span><span><strong>AI script personalization</strong> — Claude rewrites scripts using your child's name and situation.</span></li>
+          <li><span class="fl-icon">✓</span><span><strong>Behavior insights</strong> — Charts showing patterns by time of day, day of week, and fatigue window.</span></li>
+          <li><span class="fl-icon">✓</span><span><strong>Weekly summary card</strong> — Shareable image of your week.</span></li>
+          <li><span class="fl-icon">✓</span><span><strong>AI weekly planner</strong> — 7-day plan generated in one tap.</span></li>
+          <li><span class="fl-icon">✓</span><span><strong>Unlimited child profiles</strong> — Free includes 1.</span></li>
+          <li><span class="fl-icon">✓</span><span><strong>Child mode</strong> — Hand-off view for your child.</span></li>
+        </ul>
+
+        <div class="info-card note">
+          <div class="info-label">Pricing</div>
+          <div class="info-body">Monthly: $3.99/month. Yearly: $19.99/year (~$1.67/month). Both include a 7-day free trial. To manage or cancel your subscription, go to Settings → [Your Name] → Subscriptions on your iPhone.</div>
+        </div>
+
+        <div class="info-card tip">
+          <div class="info-label">Restore purchases</div>
+          <div class="info-body">If you've subscribed before and need to restore your purchase on a new device, open LittlePath, tap any premium feature to open the paywall, then scroll down and tap "Restore purchases".</div>
+        </div>
+      </div>
+
+      <!-- 09 iCloud Sync -->
+      <div class="manual-section" id="sync">
+        <div class="section-num">09 — iCloud sync</div>
+        <h2 class="section-heading">Your data across all devices.</h2>
+        <div class="section-body">
+          <p>LittlePath syncs automatically via iCloud. Your child profiles, behavior logs, activity completions, and planner slots are available on every iPhone and iPad signed into your Apple ID.</p>
+          <p>Sync is automatic and requires no setup. Make sure you're signed into iCloud on all your devices and that LittlePath has iCloud access in <strong>Settings → [Your Name] → iCloud → Apps Using iCloud</strong>.</p>
+        </div>
+
+        <div class="info-card note">
+          <div class="info-label">Privacy</div>
+          <div class="info-body">Your data is stored in your personal iCloud account — not on tessbuild servers. Anthropic's servers are only contacted when you use AI personalization, and only the minimum necessary information is sent. No data is sold or shared with third parties.</div>
+        </div>
+      </div>
+
+      <!-- 10 FAQ -->
+      <div class="manual-section" id="faq">
+        <div class="section-num">10 — Frequently asked questions</div>
+        <h2 class="section-heading">Common questions answered.</h2>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q">What age range is LittlePath designed for?</div>
+            <div class="faq-a">Birth through age 8 (primary age). The app covers five developmental stages: infant (0–18 months), toddler (18–36 months), early preschool (3–4 years), preschool (4–6 years), and primary age (6–8 years). Scripts and activities are filtered to show only what's relevant for your child's current stage.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">Does the app work offline?</div>
+            <div class="faq-a">Yes. All behavior scripts and activities are stored on your device — no internet connection is needed to use them. AI personalization requires an internet connection since it contacts Anthropic's servers. Behavior logs and planner data are saved locally and sync to iCloud when a connection is available.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">Is my child's data private?</div>
+            <div class="faq-a">Yes. Your data is stored on your device and in your personal iCloud account. tessbuild does not have access to your child's profile, behavior logs, or any personal data. The only data that leaves your device is when you use AI personalization — and only the minimum necessary information is sent to Anthropic's API.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">How do I cancel my subscription?</div>
+            <div class="faq-a">Go to Settings → [Your Name] → Subscriptions on your iPhone or iPad. Find LittlePath and tap Cancel Subscription. You retain access until the end of your current billing period.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">I switched to a new iPhone. How do I get my data back?</div>
+            <div class="faq-a">Sign into the same Apple ID on your new device and install LittlePath. Your data syncs automatically via iCloud — profiles, behavior logs, and planner history should all appear within a few minutes. If you subscribed to Premium, tap "Restore purchases" in the paywall to reactivate.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">Can I add a second child?</div>
+            <div class="faq-a">Yes, with Premium. Go to Settings (tap the avatar on the Today tab) and tap "Add child". Each child has their own profile, behavior log history, and activity completion history. The app tracks each child independently.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">The widget shows old information. How do I refresh it?</div>
+            <div class="faq-a">Open LittlePath briefly — logging a behavior or marking an activity complete triggers an immediate widget refresh. The widget also refreshes automatically every 30 minutes.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">Something isn't working. How do I get help?</div>
+            <div class="faq-a">Email support&#64;tessbuild.com — real replies from a real person. Include your iOS version and a description of what happened. For App Store issues (billing, subscription), contact Apple Support directly at apple.com/support.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <a href="../index.html" class="footer-logo">tessbuild</a>
+        <div class="footer-links">
+          <a href="index.html">LittlePath</a>
+          <a href="../index.html">All Apps</a>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms of Service</a>
+          <a href="mailto:support&#64;tessbuild.com">Contact</a>
+        </div>
+        <span class="footer-copy">© 2026 tessbuild</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

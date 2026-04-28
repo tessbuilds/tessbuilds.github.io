@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LittlePath — Montessori Parenting App</title>
+  <meta name="description" content="Behavior scripts and Montessori activities ranked for your specific child. Built for parents in the hard moments." />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0c0c0e;
+      --surface:  #131316;
+      --border:   rgba(255,255,255,0.07);
+      --border2:  rgba(255,255,255,0.12);
+      --text:     #f0efe8;
+      --muted:    rgba(240,239,232,0.4);
+      --muted2:   rgba(240,239,232,0.6);
+      --live:     #b8f5b0;
+      --live-bg:  rgba(184,245,176,0.08);
+      --accent:   #7F77DD;
+      --accent-bg: rgba(127,119,221,0.08);
+      --teal:     #1D9E75;
+      --teal-bg:  rgba(29,158,117,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    nav {
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-contact {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-contact:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 96px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      animation: fadeUp 0.5s 0.08s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--muted2);
+    }
+
+    .hero-sub {
+      margin-top: 24px;
+      font-size: 1rem;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 480px;
+      line-height: 1.7;
+      animation: fadeUp 0.5s 0.16s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.5s 0.24s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--text);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 12px 22px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--muted2);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 400;
+      padding: 12px 22px;
+      border-radius: 100px;
+      border: 1px solid var(--border2);
+      text-decoration: none;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+
+    .hero-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 28px;
+      overflow: hidden;
+      flex-shrink: 0;
+      animation: fadeUp 0.5s 0.1s ease both;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+    }
+
+    .hero-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      color: var(--live);
+      background: var(--live-bg);
+      border: 1px solid rgba(184,245,176,0.2);
+      margin-bottom: 20px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .badge-live::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--live);
+      animation: blink 2.5s ease-in-out infinite;
+    }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    /* Stats bar */
+    .stats {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .stat-item {
+      background: var(--surface);
+      padding: 24px 28px;
+    }
+
+    .stat-value {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2rem;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* Features */
+    .features {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      max-width: 560px;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--muted2);
+      font-weight: 300;
+      max-width: 520px;
+      margin-bottom: 56px;
+      line-height: 1.7;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    .feature-name {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .feature-desc {
+      font-size: 0.82rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* Differentiators */
+    .diff {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .diff-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+    }
+
+    .diff-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .diff-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.3rem;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .diff-body {
+      font-size: 0.85rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* Plans */
+    .plans {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .plan-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+    }
+
+    .plan-card.featured {
+      border-color: rgba(127,119,221,0.4);
+      background: rgba(127,119,221,0.05);
+    }
+
+    .plan-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .plan-price {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.4rem;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .plan-period {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .plan-features li {
+      font-size: 0.85rem;
+      color: var(--muted2);
+      font-weight: 300;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .plan-features li::before {
+      content: '→';
+      color: var(--accent);
+      font-size: 0.75rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .plan-features li.locked {
+      opacity: 0.4;
+    }
+
+    .plan-features li.locked::before {
+      content: '—';
+      color: var(--muted);
+    }
+
+    /* CTA */
+    .cta {
+      padding: 80px 0 100px;
+    }
+
+    .cta-inner {
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .cta-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .cta-sub {
+      font-size: 0.95rem;
+      color: var(--muted2);
+      font-weight: 300;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 40px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(240,239,232,0.2);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 720px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-icon { display: none; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: 1fr; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .plans-grid { grid-template-columns: 1fr; }
+      .about-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .hero { padding: 56px 0 64px; }
+    }
+
+    @media (max-width: 480px) {
+      .wrap { padding: 0 20px; }
+      nav { padding: 20px 0; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <nav>
+      <a href="../index.html" class="nav-logo">tessbuild</a>
+      <a href="mailto:support&#64;tessbuild.com" class="nav-contact">support&#64;tessbuild.com</a>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <div>
+          <div class="badge-live">Live on App Store</div>
+          <div class="hero-eyebrow">Montessori Parenting</div>
+          <h1 class="hero-title">Guidance for the <em>hard</em> moments.</h1>
+          <p class="hero-sub">Behavior scripts and Montessori activities ranked for your specific child — their temperament, developmental stage, and what's actually worked before.</p>
+          <div class="hero-actions">
+            <a href="https://apple.co/4sZa2CE" target="_blank" rel="noopener" class="btn-primary">
+              ⬇ Download Free
+            </a>
+            <a href="manual.html" class="btn-secondary">
+              User Manual →
+            </a>
+          </div>
+        </div>
+        <div class="hero-icon">
+          <img src="../assets/littlepath-icon.png" alt="LittlePath" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="wrap">
+      <div class="stats-inner">
+        <div class="stat-item">
+          <div class="stat-value">47</div>
+          <div class="stat-label">Behavior scripts</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">55</div>
+          <div class="stat-label">Montessori activities</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">13</div>
+          <div class="stat-label">Behavior types covered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Developmental stages</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="wrap">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Everything parents need in the moment.</h2>
+      <p class="section-sub">Built from real parenting experience. Every feature exists because a parent needed it at 4pm on a Tuesday.</p>
+
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <div class="feature-name">Ranked behavior scripts</div>
+          <div class="feature-desc">Scripts ranked by your child's temperament, developmental stage, energy level, and what's worked before. Not generic — specific.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⏰</div>
+          <div class="feature-name">Fatigue window detection</div>
+          <div class="feature-desc">The app knows when your child just got back from school with no nap. Scripts adjust automatically for lower-regulation windows.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <div class="feature-name">Behavior insights</div>
+          <div class="feature-desc">See exactly when and why your child struggles most — by time of day, day of week, and fatigue correlation. Premium.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🌿</div>
+          <div class="feature-name">55 Montessori activities</div>
+          <div class="feature-desc">Activities matched to your child's exact developmental stage — infant through primary age. Practical life, sensorial, language, nature.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <div class="feature-name">AI weekly planner</div>
+          <div class="feature-desc">Generate a 7-day activity plan tailored to your child's profile with one tap. Activities rotate to avoid repetition.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <div class="feature-name">AI personalization</div>
+          <div class="feature-desc">Claude rewrites behavior scripts specifically for your child — using their name, temperament, and situation. Premium.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <div class="feature-name">Home screen widget</div>
+          <div class="feature-desc">See today's planned activities and your streak without opening the app. Small and medium sizes available.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">☁️</div>
+          <div class="feature-name">iCloud sync</div>
+          <div class="feature-desc">Your profiles, behavior logs, and planner sync automatically across iPhone and iPad. Always up to date.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🧒</div>
+          <div class="feature-name">Child mode</div>
+          <div class="feature-desc">Hand the screen to your child safely. A simplified view shows only today's planned activities. Premium.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="diff">
+    <div class="wrap">
+      <div class="section-label">What makes it different</div>
+      <h2 class="section-title">Not another generic parenting app.</h2>
+      <p class="section-sub">Most parenting apps give you articles. LittlePath gives you what to say and do in the next 60 seconds.</p>
+
+      <div class="diff-grid">
+        <div class="diff-card">
+          <div class="diff-tag">Personalization</div>
+          <div class="diff-title">Scripts ranked for your child</div>
+          <div class="diff-body">A spirited 3-year-old who just got back from school needs a different response than a sensitive 5-year-old on a home day. LittlePath knows the difference and surfaces the right script first.</div>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-tag">Context awareness</div>
+          <div class="diff-title">Fatigue window detection</div>
+          <div class="diff-body">The after-school hour is the hardest. The app detects when your child is in a high-fatigue window and automatically adjusts which scripts appear — calming, low-energy-required approaches first.</div>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-tag">Feedback loop</div>
+          <div class="diff-title">It gets better over time</div>
+          <div class="diff-body">Rate each script after using it. The app tracks what works and what doesn't for your specific child, improving its rankings over weeks of use.</div>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-tag">Philosophy</div>
+          <div class="diff-title">Montessori grounding</div>
+          <div class="diff-body">Every script and activity is rooted in Montessori principles — not generic positive parenting platitudes. The rationale is always visible so you understand the why, not just the what.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="plans">
+    <div class="wrap">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Free to start.<br/>Unlock everything for less than a coffee.</h2>
+
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-name">Free</div>
+          <div class="plan-price">$0</div>
+          <div class="plan-period">forever</div>
+          <ul class="plan-features">
+            <li>5 behavior scripts per behavior type</li>
+            <li>10 Montessori activities</li>
+            <li>1 child profile</li>
+            <li>Home screen widget</li>
+            <li>iCloud sync</li>
+            <li class="locked">Smart script ranking</li>
+            <li class="locked">AI personalization</li>
+            <li class="locked">Behavior insights</li>
+            <li class="locked">Unlimited activities</li>
+            <li class="locked">AI weekly planner</li>
+            <li class="locked">Child mode</li>
+          </ul>
+        </div>
+
+        <div class="plan-card featured">
+          <div class="plan-name">Premium</div>
+          <div class="plan-price">$3.99</div>
+          <div class="plan-period">per month · $19.99/year · 7-day free trial</div>
+          <ul class="plan-features">
+            <li>Everything in Free</li>
+            <li>All 47 behavior scripts</li>
+            <li>All 55 Montessori activities</li>
+            <li>Smart ranking by child profile</li>
+            <li>AI script personalization</li>
+            <li>Behavior insights charts</li>
+            <li>Weekly shareable summary card</li>
+            <li>AI-generated weekly planner</li>
+            <li>Unlimited child profiles</li>
+            <li>Child mode</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="cta-inner">
+        <h2 class="cta-title">For parents in the hard moments.</h2>
+        <p class="cta-sub">Free on iPhone and iPad. No account required. Your data stays on your device and iCloud — never sold, never shared.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="https://apple.co/4sZa2CE" target="_blank" rel="noopener" class="btn-primary">
+            ⬇ Download on App Store
+          </a>
+          <a href="manual.html" class="btn-secondary">
+            User Manual →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <a href="../index.html" class="footer-logo">tessbuild</a>
+        <div class="footer-links">
+          <a href="../index.html">All Apps</a>
+          <a href="manual.html">User Manual</a>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms of Service</a>
+          <a href="mailto:support&#64;tessbuild.com">Contact</a>
+        </div>
+        <span class="footer-copy">© 2026 tessbuild</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

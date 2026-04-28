@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tessbuild — iOS Apps</title>
-  <meta name="description" content="Independent iOS apps built for focus, movement, and wellbeing." />
+  <meta name="description" content="Independent iOS apps built for focus, movement, wellbeing, and parenting. No ads. No accounts. Just useful software." />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -120,6 +120,35 @@
       animation: fadeUp 0.5s 0.16s ease both;
     }
 
+    /* Stats strip */
+    .stats-strip {
+      margin-top: 48px;
+      display: flex;
+      gap: 32px;
+      animation: fadeUp 0.5s 0.24s ease both;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .stat-value {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.6rem;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
     .apps {
       padding: 80px 0 100px;
     }
@@ -167,7 +196,13 @@
       flex-shrink: 0;
     }
 
-    .app-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; display: block; }
+    .app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+    }
 
     .app-meta {
       display: flex;
@@ -190,6 +225,13 @@
       line-height: 1.5;
     }
 
+    .app-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
     .app-badge {
       display: inline-flex;
       align-items: center;
@@ -201,8 +243,6 @@
       text-transform: uppercase;
       padding: 4px 10px;
       border-radius: 100px;
-      align-self: flex-start;
-      margin-top: auto;
     }
 
     .badge-live {
@@ -220,13 +260,11 @@
       animation: blink 2.5s ease-in-out infinite;
     }
 
-    .app-card.coming-soon { cursor: default; }
-    .app-card.coming-soon:hover { background: var(--surface); }
-
-    .badge-soon {
-      color: var(--soon);
-      background: var(--soon-bg);
-      border: 1px solid rgba(255,255,255,0.08);
+    .app-learn {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
     }
 
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
@@ -310,10 +348,7 @@
       .about-inner { grid-template-columns: 1fr; gap: 32px; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
       .hero { padding: 56px 0 64px; }
-    }
-
-    @media (max-width: 540px) {
-      .apps-grid { grid-template-columns: 1fr; }
+      .stats-strip { gap: 24px; flex-wrap: wrap; }
     }
 
     @media (max-width: 480px) {
@@ -335,7 +370,21 @@
     <div class="wrap">
       <div class="hero-eyebrow">Independent iOS Development</div>
       <h1 class="hero-title">Apps built for <em>everyday</em> life.</h1>
-      <p class="hero-sub">Small, focused tools for movement, wellbeing, and preparation. No ads. No accounts. Just useful software.</p>
+      <p class="hero-sub">Four focused tools for movement, wellbeing, career, and parenting. No ads. No accounts required. Just useful software built by one person.</p>
+      <div class="stats-strip">
+        <div class="stat">
+          <div class="stat-value">4</div>
+          <div class="stat-label">Live apps</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">iOS 17+</div>
+          <div class="stat-label">Platform</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">0</div>
+          <div class="stat-label">Ads ever</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -344,48 +393,64 @@
       <div class="section-label">Apps</div>
       <div class="apps-grid">
 
+        <!-- Calma -->
         <a href="https://apps.apple.com/us/app/calma-mood-breathing/id6760365372" class="app-card" target="_blank" rel="noopener">
           <div class="app-icon">
             <img src="assets/calma-icon.png" alt="Calma" />
           </div>
           <div class="app-meta">
             <div class="app-name">Calma</div>
-            <div class="app-desc">Mood tracking and guided breathing for remote workers and busy days.</div>
+            <div class="app-desc">Mood tracking and guided breathing for remote workers and busy days. Log how you feel, spot patterns, breathe through the hard moments.</div>
           </div>
-          <span class="app-badge badge-live">Live on App Store</span>
+          <div class="app-footer">
+            <span class="app-badge badge-live">Live on App Store</span>
+            <span class="app-learn">↗ Download</span>
+          </div>
         </a>
 
+        <!-- DeskFit AI -->
         <a href="https://apps.apple.com/us/app/deskfit-ai/id6760520390" class="app-card" target="_blank" rel="noopener">
           <div class="app-icon">
             <img src="assets/deskfit-icon.svg" alt="DeskFit AI" />
           </div>
           <div class="app-meta">
             <div class="app-name">DeskFit AI</div>
-            <div class="app-desc">AI-generated desk workouts for people who sit all day. No equipment needed.</div>
+            <div class="app-desc">AI-generated desk workouts for people who sit all day. No equipment, no gym. 5-minute routines that actually fit into a workday.</div>
           </div>
-          <span class="app-badge badge-live">Live on App Store</span>
+          <div class="app-footer">
+            <span class="app-badge badge-live">Live on App Store</span>
+            <span class="app-learn">↗ Download</span>
+          </div>
         </a>
 
+        <!-- StackReady -->
         <a href="https://apps.apple.com/us/app/stackready-interview-practice/id6760689462" class="app-card" target="_blank" rel="noopener">
           <div class="app-icon">
             <img src="assets/stackready-icon.png" alt="StackReady" />
           </div>
           <div class="app-meta">
             <div class="app-name">StackReady</div>
-            <div class="app-desc">AI-powered technical interview practice. Prep smarter, land the role.</div>
+            <div class="app-desc">AI-powered technical interview practice for software engineers. Real questions, real feedback, real preparation — not flashcards.</div>
           </div>
-          <span class="app-badge badge-live">Live on App Store</span>
+          <div class="app-footer">
+            <span class="app-badge badge-live">Live on App Store</span>
+            <span class="app-learn">↗ Download</span>
+          </div>
         </a>
 
-        <a href="https://apps.apple.com/us/app/littlepath/id6761305309" class="app-card" target="_blank" rel="noopener">
+        <!-- LittlePath -->
+        <a href="littlepath/index.html" class="app-card">
           <div class="app-icon">
             <img src="assets/littlepath-icon.png" alt="LittlePath" />
           </div>
           <div class="app-meta">
             <div class="app-name">LittlePath</div>
-            <div class="app-desc">Personalized daily activity plans for young children. Built for parents who want more than screen time.</div>
+            <div class="app-desc">Montessori behavior scripts and activities ranked for your specific child. Built for parents in the hard moments — not the easy ones.</div>
           </div>
-          <span class="app-badge badge-live">Live on App Store</span>
+          <div class="app-footer">
+            <span class="app-badge badge-live">Live on App Store</span>
+            <span class="app-learn">Learn more →</span>
+          </div>
         </a>
 
       </div>
@@ -397,7 +462,7 @@
       <div class="about-inner">
         <h2 class="about-title">Built by one person,<br/>for real problems.</h2>
         <div class="about-body">
-          <p>tessbuild is an independent iOS development studio focused on building small, purposeful apps. Each app solves a specific problem — no bloat, no subscriptions you'll forget, no data you didn't agree to share.</p>
+          <p>tessbuild is an independent iOS development studio. Each app solves a specific problem — no bloat, no dark patterns, no data you didn't agree to share. Every app is built and maintained by a single developer.</p>
           <p>Have a question, a bug to report, or just want to say hi? Reach out at <a href="mailto:support&#64;tessbuild.com" style="color: var(--text); text-decoration: underline; text-decoration-color: var(--border2);">support&#64;tessbuild.com</a> — real replies from a real person.</p>
         </div>
       </div>
@@ -412,7 +477,8 @@
           <a href="https://apps.apple.com/us/app/calma-mood-breathing/id6760365372" target="_blank" rel="noopener">Calma</a>
           <a href="https://apps.apple.com/us/app/deskfit-ai/id6760520390" target="_blank" rel="noopener">DeskFit AI</a>
           <a href="https://apps.apple.com/us/app/stackready-interview-practice/id6760689462" target="_blank" rel="noopener">StackReady</a>
-          <a href="https://apps.apple.com/us/app/littlepath/id6761305309" target="_blank" rel="noopener">LittlePath</a>
+          <a href="littlepath/index.html">LittlePath</a>
+          <a href="littlepath/manual.html">LittlePath Manual</a>
           <a href="privacy.html">Privacy Policy</a>
           <a href="terms.html">Terms of Service</a>
           <a href="mailto:support&#64;tessbuild.com">Contact</a>

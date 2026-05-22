@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tessbuild — iOS Apps</title>
-  <meta name="description" content="Independent iOS apps built for focus, movement, wellbeing, and parenting. No ads. No accounts. Just useful software." />
+  <meta name="description" content="Independent iOS apps built for focus, movement, wellbeing, parenting, and play. No ads. No accounts. Just useful software." />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -18,8 +18,8 @@
       --muted2:   rgba(240,239,232,0.6);
       --live:     #b8f5b0;
       --live-bg:  rgba(184,245,176,0.08);
-      --soon:     rgba(240,239,232,0.25);
-      --soon-bg:  rgba(240,239,232,0.04);
+      --soon:     rgba(240,239,232,0.55);
+      --soon-bg:  rgba(240,239,232,0.06);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -260,6 +260,12 @@
       animation: blink 2.5s ease-in-out infinite;
     }
 
+    .badge-soon {
+      color: var(--soon);
+      background: var(--soon-bg);
+      border: 1px solid var(--border2);
+    }
+
     .app-learn {
       font-size: 0.75rem;
       color: var(--muted);
@@ -370,10 +376,10 @@
     <div class="wrap">
       <div class="hero-eyebrow">Independent iOS Development</div>
       <h1 class="hero-title">Apps built for <em>everyday</em> life.</h1>
-      <p class="hero-sub">Four focused tools for movement, wellbeing, career, and parenting. No ads. No accounts required. Just useful software built by one person.</p>
+      <p class="hero-sub">Five focused tools for movement, wellbeing, career, parenting, and play. No ads. No accounts required. Just useful software built by one person.</p>
       <div class="stats-strip">
         <div class="stat">
-          <div class="stat-value">4</div>
+          <div class="stat-value">5</div>
           <div class="stat-label">Live apps</div>
         </div>
         <div class="stat">
@@ -439,7 +445,7 @@
         </a>
 
         <!-- LittlePath -->
-        <a href="littlepath/index.html" class="app-card">
+        <a href="https://apps.apple.com/us/app/littlepath/id6761305309" class="app-card" target="_blank" rel="noopener">
           <div class="app-icon">
             <img src="assets/littlepath-icon.png" alt="LittlePath" />
           </div>
@@ -449,6 +455,21 @@
           </div>
           <div class="app-footer">
             <span class="app-badge badge-live">Live on App Store</span>
+            <span class="app-learn">↗ Download</span>
+          </div>
+        </a>
+
+        <!-- MisTap -->
+        <a href="mistap/index.html" class="app-card">
+          <div class="app-icon">
+            <img src="assets/mistap-icon.png" alt="MisTap" />
+          </div>
+          <div class="app-meta">
+            <div class="app-name">MisTap</div>
+            <div class="app-desc">A reaction game where one wrong tap ends your run. Three modes, streak armor that saves you once, and a Daily Challenge with the same seed worldwide.</div>
+          </div>
+          <div class="app-footer">
+            <span class="app-badge badge-soon">Coming soon</span>
             <span class="app-learn">Learn more →</span>
           </div>
         </a>
@@ -477,7 +498,8 @@
           <a href="https://apps.apple.com/us/app/calma-mood-breathing/id6760365372" target="_blank" rel="noopener">Calma</a>
           <a href="https://apps.apple.com/us/app/deskfit-ai/id6760520390" target="_blank" rel="noopener">DeskFit AI</a>
           <a href="https://apps.apple.com/us/app/stackready-interview-practice/id6760689462" target="_blank" rel="noopener">StackReady</a>
-          <a href="littlepath/index.html">LittlePath</a>
+          <a href="https://apps.apple.com/us/app/littlepath/id6761305309" target="_blank" rel="noopener">LittlePath</a>
+          <a href="mistap/index.html">MisTap</a>
           <a href="littlepath/manual.html">LittlePath Manual</a>
           <a href="privacy.html">Privacy Policy</a>
           <a href="terms.html">Terms of Service</a>

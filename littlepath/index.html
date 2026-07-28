@@ -376,9 +376,10 @@
 
     .plans-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 16px;
       margin-top: 48px;
+      max-width: 640px;
     }
 
     .plan-card {
@@ -439,15 +440,6 @@
       font-size: 0.75rem;
       margin-top: 2px;
       flex-shrink: 0;
-    }
-
-    .plan-features li.locked {
-      opacity: 0.4;
-    }
-
-    .plan-features li.locked::before {
-      content: '—';
-      color: var(--muted);
     }
 
     /* CTA */
@@ -621,7 +613,7 @@
         <div class="feature-card">
           <div class="feature-icon">📊</div>
           <div class="feature-name">Behavior insights</div>
-          <div class="feature-desc">See exactly when and why your child struggles most — by time of day, day of week, and fatigue correlation. Premium.</div>
+          <div class="feature-desc">See exactly when and why your child struggles most — by time of day, day of week, and fatigue correlation.</div>
         </div>
 
         <div class="feature-card">
@@ -639,7 +631,7 @@
         <div class="feature-card">
           <div class="feature-icon">✨</div>
           <div class="feature-name">AI personalization</div>
-          <div class="feature-desc">Claude rewrites behavior scripts specifically for your child — using their name, temperament, and situation. Premium.</div>
+          <div class="feature-desc">Claude rewrites behavior scripts specifically for your child — using their name, temperament, and situation.</div>
         </div>
 
         <div class="feature-card">
@@ -657,7 +649,7 @@
         <div class="feature-card">
           <div class="feature-icon">🧒</div>
           <div class="feature-name">Child mode</div>
-          <div class="feature-desc">Hand the screen to your child safely. A simplified view shows only today's planned activities. Premium.</div>
+          <div class="feature-desc">Hand the screen to your child safely. A simplified view shows only today's planned activities.</div>
         </div>
 
       </div>
@@ -700,35 +692,16 @@
 
   <section class="plans">
     <div class="wrap">
-      <div class="section-label">Pricing</div>
-      <h2 class="section-title">Free to start.<br/>Unlock everything for less than a coffee.</h2>
+      <div class="section-label">Everything included</div>
+      <h2 class="section-title">Every feature.<br/>Free for every family.</h2>
+      <p class="section-sub">No subscription, no locked features, and no ads. Download LittlePath and use the complete app.</p>
 
       <div class="plans-grid">
-        <div class="plan-card">
-          <div class="plan-name">Free</div>
-          <div class="plan-price">$0</div>
-          <div class="plan-period">forever</div>
-          <ul class="plan-features">
-            <li>5 behavior scripts per behavior type</li>
-            <li>10 Montessori activities</li>
-            <li>1 child profile</li>
-            <li>Home screen widget</li>
-            <li>iCloud sync</li>
-            <li class="locked">Smart script ranking</li>
-            <li class="locked">AI personalization</li>
-            <li class="locked">Behavior insights</li>
-            <li class="locked">Unlimited activities</li>
-            <li class="locked">AI weekly planner</li>
-            <li class="locked">Child mode</li>
-          </ul>
-        </div>
-
         <div class="plan-card featured">
-          <div class="plan-name">Premium</div>
-          <div class="plan-price">$3.99</div>
-          <div class="plan-period">per month · $19.99/year · 7-day free trial</div>
+          <div class="plan-name">LittlePath</div>
+          <div class="plan-price">$0</div>
+          <div class="plan-period">the complete experience</div>
           <ul class="plan-features">
-            <li>Everything in Free</li>
             <li>All 47 behavior scripts</li>
             <li>All 55 Montessori activities</li>
             <li>Smart ranking by child profile</li>
@@ -748,7 +721,7 @@
     <div class="wrap">
       <div class="cta-inner">
         <h2 class="cta-title">For parents in the hard moments.</h2>
-        <p class="cta-sub">Free on iPhone and iPad. No account required. Your data stays on your device and iCloud — never sold, never shared.</p>
+        <p class="cta-sub">Free on iPhone and iPad. No account required and no ads. Your data is never sold; AI personalization sends only the details needed to generate your request.</p>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
           <a href="https://apple.co/4sZa2CE" target="_blank" rel="noopener" class="btn-primary">
             ⬇ Download on App Store
@@ -768,8 +741,8 @@
         <div class="footer-links">
           <a href="../index.html">All Apps</a>
           <a href="manual.html">User Manual</a>
-          <a href="../privacy.html">Privacy Policy</a>
-          <a href="../terms.html">Terms of Service</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
           <a href="mailto:support&#64;tessbuild.com">Contact</a>
         </div>
         <span class="footer-copy">© 2026 tessbuild</span>

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Privacy Policy — DeskFit AI</title>
         <link
-            href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&amp;family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&amp;display=swap"
             rel="stylesheet"
         />
         <style>
@@ -451,7 +451,7 @@
                 <div class="hero-meta">
                     <div class="meta-item">
                         <div class="meta-dot"></div>
-                        Effective: April 7, 2026
+                        Effective: July 28, 2026
                     </div>
                     <div class="meta-item">
                         <div
@@ -512,16 +512,24 @@
                         <li>Selected app theme</li>
                     </ul>
                     <p>
-                        The following data is sent to third-party services
+                        The following anonymous workout preferences are sent
                         <strong>only when you generate a workout</strong>:
                     </p>
                     <ul>
-                        <li>Your first name</li>
                         <li>
-                            Fitness level, goal, selected duration, and location
-                            type
+                            Selected duration and workout setting (desk, home,
+                            or gym)
                         </li>
+                        <li>Fitness level, goal, and energy level</li>
+                        <li>Selected focus areas and time of day</li>
+                        <li>Work setup, pain points, and fitness background</li>
+                        <li>Recently used exercise names, to provide variety</li>
                     </ul>
+                    <p>
+                        Your name, email address, workout history, device
+                        information, contacts, and geographic location are not
+                        included in workout-generation requests.
+                    </p>
                 </div>
 
                 <div class="section" id="data-use">
@@ -557,28 +565,28 @@
 
                 <div class="section" id="ai">
                     <div class="section-number">03</div>
-                    <h2>AI &amp; Claude API</h2>
+                    <h2>AI Workout Generation</h2>
                     <p>
-                        DeskFit AI uses Anthropic's Claude API to generate
-                        workout plans. When you tap "Generate AI Workout," a
-                        request is sent to Anthropic's servers containing:
+                        DeskFit AI sends a request through our API to
+                        Anthropic's Claude API when you tap "Generate AI
+                        Workout." The request contains:
                     </p>
                     <ul>
-                        <li>Your first name</li>
                         <li>
                             Selected workout duration (10, 20, or 30 minutes)
                         </li>
-                        <li>Selected location (desk, home, or gym)</li>
-                        <li>Your fitness level and goal</li>
+                        <li>Workout setting (desk, home, or gym)</li>
+                        <li>Fitness level, goal, and energy level</li>
+                        <li>Focus areas and time of day</li>
+                        <li>Work setup, pain points, and fitness background</li>
+                        <li>Recently used exercise names</li>
                     </ul>
                     <div class="highlight">
                         <p>
-                            <strong
-                                >No sensitive data is sent to Anthropic.</strong
-                            >
-                            We never send your workout history, device
-                            information, location, or any other personal data to
-                            the Claude API.
+                            <strong>Your name is not sent.</strong>
+                            We also do not send your email address, workout
+                            history, device information, contacts, or geographic
+                            location to our API or the Claude API.
                         </p>
                     </div>
                     <p>
@@ -607,17 +615,16 @@
                             generation (see Section 3)
                         </li>
                         <li>
-                            <strong>Apple StoreKit</strong> — In-app purchase
-                            processing for DeskFit AI Pro. Apple handles all
-                            payment processing; we never see or store your
-                            payment information.
-                        </li>
-                        <li>
-                            <strong>Apple Push Notifications (APNs)</strong> —
-                            Used to deliver stretch break and workout reminders.
-                            Notification tokens are managed by Apple.
+                            <strong>Apple Health</strong> — If you grant
+                            permission, completed workouts and estimated
+                            calories can be written to the Health app.
                         </li>
                     </ul>
+                    <p>
+                        Workout and stretch reminders are scheduled locally on
+                        your device; DeskFit AI does not use remote push
+                        notifications.
+                    </p>
                     <p>
                         We do not integrate any advertising SDKs, analytics
                         platforms, or social media trackers.
@@ -628,23 +635,25 @@
                     <div class="section-number">05</div>
                     <h2>Data Storage &amp; Security</h2>
                     <p>
-                        All personal data — your name, preferences, workout
-                        history, and progress — is stored locally on your device
-                        using Apple's SwiftData framework and UserDefaults. This
-                        data is included in your iCloud device backup if you
-                        have iCloud backup enabled.
+                        Your name, workout history, progress, and saved settings
+                        are stored locally on your device using Apple's
+                        SwiftData framework and UserDefaults. Anonymous workout
+                        preferences are transmitted when you request an AI
+                        workout, as described in Section 3. Locally stored data
+                        may be included in your device backup if backup is
+                        enabled.
                     </p>
                     <div class="highlight highlight-green">
                         <p>
-                            <strong>Deleting the app deletes your data.</strong>
-                            When you delete DeskFit AI from your device, all
-                            locally stored data is permanently removed. There is
-                            no server-side backup.
+                            <strong>Deleting the app removes its local data.</strong>
+                            Data contained in an existing device backup may
+                            remain until that backup is deleted or expires.
                         </p>
                     </div>
                     <p>
-                        We do not operate any servers that store your personal
-                        information.
+                        Our API processes workout-generation requests but does
+                        not require an account or maintain a DeskFit workout
+                        history for you.
                     </p>
                 </div>
 
@@ -664,8 +673,8 @@
                     <div class="section-number">07</div>
                     <h2>Your Rights</h2>
                     <p>
-                        Since DeskFit AI stores all data locally on your device,
-                        you have full control over your data at all times:
+                        Most DeskFit AI data is stored locally on your device,
+                        giving you direct control over it:
                     </p>
                     <ul>
                         <li>
@@ -686,11 +695,9 @@
                         </li>
                     </ul>
                     <p>
-                        If you are located in the EU/EEA, you may have
-                        additional rights under the GDPR. As DeskFit AI does not
-                        collect or process personal data on our servers, most
-                        GDPR obligations do not apply. For any questions,
-                        contact us below.
+                        Depending on where you live, you may have additional
+                        privacy rights. Contact us below if you have a question
+                        or would like to make a privacy-related request.
                     </p>
                 </div>
 

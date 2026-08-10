@@ -6,7 +6,7 @@
         <title>Privacy Policy — Calma</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=DM+Mono:wght@300;400;500&amp;display=swap"
             rel="stylesheet"
         />
         <style>
@@ -171,14 +171,16 @@
             <p class="eyebrow">Legal</p>
             <h1>Privacy Policy</h1>
             <p class="updated">
-                Last updated: March 2026 &nbsp;·&nbsp; tessbuild
+                Last updated: August 10, 2026 &nbsp;·&nbsp; tessbuild
             </p>
 
             <div class="highlight-box">
                 <p>
-                    🔒 <strong>The short version:</strong> Calma stores all your
-                    data on your device. We collect nothing. We sell nothing.
-                    There are no accounts, no servers, no tracking.
+                    🔒 <strong>The short version:</strong> Your mood history and
+                    journal are stored on your device. Calma has no accounts,
+                    advertising, or third-party tracking. AI features process only
+                    the information needed for the response, and journal notes are
+                    included only with your permission. We do not sell your data.
                 </p>
             </div>
 
@@ -198,25 +200,76 @@
                 >.
             </p>
 
-            <h2>2. What data Calma collects</h2>
+            <h2>2. Information stored on your device</h2>
             <p>
-                Calma collects <strong>no personal data</strong> on our servers.
-                All information you enter into the app — mood scores, journal
-                notes, check-in timestamps, streaks — is stored exclusively in
-                your device's local storage (Core Data) and never leaves your
-                iPhone.
+                Calma stores your core wellness history locally on your device.
+                This includes mood scores, journal notes, check-in timestamps,
+                streaks, coping activity history and feedback, reminder settings,
+                AI consent choices, and breathing cue preferences. Calma does not
+                require an account and does not provide cloud sync.
             </p>
-            <p>We do not collect:</p>
+            <p>
+                Calma may also store a metadata-only summary of your most recent AI
+                request, such as the feature used, categories of information sent,
+                and date. It does not store the actual journal text in this audit
+                summary.
+            </p>
+
+            <h2>3. Information processed for AI features</h2>
+            <p>
+                When you use an AI-powered feature, Calma sends limited information
+                over an encrypted connection to our backend service so a response
+                can be generated:
+            </p>
+            <ul>
+                <li><strong>Journal prompts:</strong> the selected mood score</li>
+                <li><strong>Breathing recommendations:</strong> the latest mood score</li>
+                <li><strong>Coping suggestions:</strong> the current mood score and, only if allowed, the current journal note</li>
+                <li><strong>Insights:</strong> recent mood scores and, only if allowed, journal notes within the Insights window</li>
+            </ul>
+            <p>
+                Calma may prefetch score-only breathing or Insights responses to
+                reduce loading time. Journal notes are never included in this
+                background prefetch. You can change journal-note permission at any
+                time in Settings.
+            </p>
+            <p>Calma does not send the following information to its AI service:</p>
             <ul>
                 <li>Your name or email address</li>
-                <li>Your mood logs or journal entries</li>
-                <li>Your location</li>
-                <li>Device identifiers</li>
-                <li>Usage analytics or crash reports</li>
-                <li>Any biometric or health data</li>
+                <li>Subscription or payment information</li>
+                <li>Notification history</li>
+                <li>Local coping feedback and helpfulness outcomes</li>
+                <li>Location, contacts, photos, or biometric information</li>
+                <li>Mood history outside the data needed for the requested feature</li>
             </ul>
 
-            <h2>3. Notifications</h2>
+            <h2>4. How information is used</h2>
+            <p>Information processed by Calma is used only to:</p>
+            <ul>
+                <li>Provide mood tracking, journaling, breathing, coping, and Insights features</li>
+                <li>Generate the AI response you requested or a score-only response prefetched for faster loading</li>
+                <li>Maintain subscriptions and restore purchases through Apple</li>
+                <li>Protect, troubleshoot, and operate the service</li>
+            </ul>
+            <p>
+                We do not sell your information, use it for advertising, or use it
+                to build advertising profiles.
+            </p>
+
+            <h2>5. Service providers</h2>
+            <p>Calma relies on the following service providers:</p>
+            <ul>
+                <li><strong>Amazon Web Services (AWS):</strong> API Gateway and Lambda provide backend infrastructure for AI requests.</li>
+                <li><strong>Anthropic:</strong> processes the limited request content needed to generate AI responses.</li>
+                <li><strong>Apple:</strong> distributes the app and manages subscriptions, payments, purchase history, and restoration through the App Store and StoreKit.</li>
+            </ul>
+            <p>
+                These providers may process information in accordance with their
+                own terms and privacy policies. Calma does not integrate advertising
+                networks or third-party behavioral analytics SDKs.
+            </p>
+
+            <h2>6. Notifications</h2>
             <p>
                 If you enable daily check-in reminders, Calma uses iOS's local
                 notification system. These notifications are scheduled entirely
@@ -225,19 +278,37 @@
                 opened.
             </p>
 
-            <h2>4. Third-party services</h2>
+            <h2>7. Data retention and deletion</h2>
             <p>
-                Calma does not integrate with any third-party analytics,
-                advertising, or data collection services. There are no SDKs from
-                Facebook, Google, or any other data broker in this app.
+                Your mood history, journal notes, preferences, and local
+                personalization remain on your device until you delete them. You
+                can use <strong>Settings → Delete All Data</strong> to remove Calma's
+                local data and reset the app, or delete the app from your iPhone.
             </p>
             <p>
-                The App Store (Apple) has its own privacy practices for app
-                downloads. Please refer to Apple's Privacy Policy for
-                information on how the App Store handles data.
+                Calma's backend does not create user accounts or intentionally
+                maintain a server-side mood or journal history. Information sent
+                for an AI request may be processed and retained for limited periods
+                by infrastructure and AI service providers according to their
+                applicable policies and operational requirements. Deleting local
+                data cannot recall information that has already been processed in a
+                prior request.
             </p>
 
-            <h2>5. Children's privacy</h2>
+            <h2>8. Security and international processing</h2>
+            <p>
+                Calma uses encrypted HTTPS connections for network requests and
+                limits the information included in each AI request. No method of
+                transmission or storage is completely secure, and we cannot
+                guarantee absolute security.
+            </p>
+            <p>
+                AWS, Anthropic, and Apple may process information in the United
+                States or other countries where they operate. Those locations may
+                have different data-protection laws from your country.
+            </p>
+
+            <h2>9. Children's privacy</h2>
             <p>
                 Calma is not directed at children under the age of 13. We do not
                 knowingly collect any information from children. If you believe
@@ -245,14 +316,7 @@
                 guidance.
             </p>
 
-            <h2>6. Data deletion</h2>
-            <p>
-                Since all data is stored locally on your device, you can delete
-                all Calma data at any time by deleting the app from your iPhone.
-                No data exists on our servers to request deletion of.
-            </p>
-
-            <h2>7. Medical disclaimer</h2>
+            <h2>10. Medical disclaimer</h2>
             <p>
                 Calma is not a medical or mental health service. It is designed
                 for personal reflection and general wellness only. Calma does
@@ -262,7 +326,7 @@
                 immediately.
             </p>
 
-            <h2>8. Changes to this policy</h2>
+            <h2>11. Changes to this policy</h2>
             <p>
                 If we make changes to this privacy policy, we will update the
                 "last updated" date at the top of this page. We encourage you to
@@ -270,7 +334,7 @@
                 changes constitutes acceptance of the updated policy.
             </p>
 
-            <h2>9. Contact</h2>
+            <h2>12. Contact</h2>
             <p>
                 Questions about this privacy policy? Email us at
                 <strong

@@ -512,8 +512,9 @@
                         <li>Selected app theme</li>
                     </ul>
                     <p>
-                        The following anonymous workout preferences are sent
-                        <strong>only when you generate a workout</strong>:
+                        If you explicitly allow AI-generated workouts, the
+                        following workout preferences are sent
+                        <strong>only when you generate an AI workout</strong>:
                     </p>
                     <ul>
                         <li>
@@ -531,11 +532,18 @@
                         included in workout-generation requests.
                     </p>
                     <p>
-                        We may retain anonymous exercise content returned by
-                        the AI service, such as exercise names, general
-                        instructions, modifications, and target areas. We do
-                        not store the workout request or associate this content
-                        with an account, device, person, or workout history.
+                        You can instead choose local workouts, in which case no
+                        workout-generation request is sent to our API or a
+                        third-party AI. You can change this choice in Settings.
+                    </p>
+                    <p>
+                        Only if you separately enable "Improve Exercise
+                        Library" may we retain anonymous exercise content
+                        returned by the AI service, such as exercise names,
+                        general instructions, modifications, and target areas.
+                        We do not store the workout request or associate this
+                        content with an account, device, person, or workout
+                        history.
                     </p>
                 </div>
 
@@ -578,9 +586,10 @@
                     <div class="section-number">03</div>
                     <h2>AI Workout Generation</h2>
                     <p>
-                        DeskFit AI sends a request through our API to
-                        Anthropic's Claude API when you tap "Generate AI
-                        Workout." The request contains:
+                        Before the first AI workout, DeskFit asks for your
+                        explicit permission to send workout preferences through
+                        our AWS API to Anthropic's Claude API. If you allow it,
+                        the request contains:
                     </p>
                     <ul>
                         <li>
@@ -592,6 +601,12 @@
                         <li>Work setup, pain points, and fitness background</li>
                         <li>Recently used exercise names</li>
                     </ul>
+                    <p>
+                        If you decline, DeskFit creates a local workout on your
+                        device instead and sends no workout preferences to our
+                        API or Anthropic. You can change this choice at any time
+                        under AI &amp; Privacy in Settings.
+                    </p>
                     <div class="highlight">
                         <p>
                             <strong>Your name is not sent.</strong>
@@ -667,7 +682,8 @@
                         history for you.
                     </p>
                     <p>
-                        Anonymous AI-generated exercise content may be stored
+                        If you enable "Improve Exercise Library," anonymous
+                        AI-generated exercise content may be stored
                         in an aggregated exercise-candidate catalog on Amazon
                         Web Services. Candidate records contain exercise
                         content and an aggregate generation count only. They do

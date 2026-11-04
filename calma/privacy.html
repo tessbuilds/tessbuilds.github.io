@@ -171,7 +171,7 @@
             <p class="eyebrow">Legal</p>
             <h1>Privacy Policy</h1>
             <p class="updated">
-                Last updated: August 10, 2026 &nbsp;·&nbsp; tessbuild
+                Last updated: November 4, 2026 &nbsp;·&nbsp; tessbuild
             </p>
 
             <div class="highlight-box">
@@ -225,10 +225,10 @@
                 <li><strong>Journal prompts:</strong> the selected mood score</li>
                 <li><strong>Breathing recommendations:</strong> the latest mood score</li>
                 <li><strong>Coping suggestions:</strong> the current mood score and, only if allowed, the current journal note</li>
-                <li><strong>Insights:</strong> recent mood scores and, only if allowed, journal notes within the Insights window</li>
+                <li><strong>Insights:</strong> recent mood scores and their dates, and, only if allowed, journal notes within the Insights window</li>
             </ul>
             <p>
-                Calma may prefetch score-only breathing or Insights responses to
+                Calma may prefetch a score-only breathing recommendation to
                 reduce loading time. Journal notes are never included in this
                 background prefetch. You can change journal-note permission at any
                 time in Settings.
@@ -248,7 +248,7 @@
             <ul>
                 <li>Provide mood tracking, journaling, breathing, coping, and Insights features</li>
                 <li>Generate the AI response you requested or a score-only response prefetched for faster loading</li>
-                <li>Maintain subscriptions and restore purchases through Apple</li>
+                <li>Check existing subscription entitlements through Apple; version 2.0 provides all features without a new subscription</li>
                 <li>Protect, troubleshoot, and operate the service</li>
             </ul>
             <p>
@@ -286,13 +286,36 @@
                 local data and reset the app, or delete the app from your iPhone.
             </p>
             <p>
-                Calma's backend does not create user accounts or intentionally
-                maintain a server-side mood or journal history. Information sent
-                for an AI request may be processed and retained for limited periods
-                by infrastructure and AI service providers according to their
-                applicable policies and operational requirements. Deleting local
-                data cannot recall information that has already been processed in a
-                prior request.
+                Calma's AI request handlers do not write mood scores, journal notes,
+                or AI responses to an application database or maintain a server-side
+                journal history. Request content is processed by AWS infrastructure
+                in the United States and sent to Anthropic to generate responses.
+            </p>
+            <p>
+                Anthropic's standard commercial API policy provides for deletion
+                of inputs and outputs within 30 days, with exceptions for safety
+                enforcement, legal requirements, or a different agreement. Calma
+                does not promise zero data retention. Anthropic states that API
+                inputs and outputs are not used to train its models by default,
+                unless the customer opts in or provides qualifying feedback.
+                See <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data">Anthropic's retention policy</a>
+                and <a href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training">training policy</a>.
+            </p>
+            <p>
+                Infrastructure providers process connection and operational metadata
+                to deliver and secure requests. Calma's AI handlers do not explicitly
+                log prompt or response content, and API Gateway access logging is
+                disabled. The shared AWS Lambda operational log group currently has
+                no automatic expiration configured. This does not mean that journal
+                contents are intentionally logged.
+            </p>
+            <p>
+                Deleting local data or turning off journal sharing does not recall
+                earlier requests or delete provider-held records. Contact us with
+                privacy requests; provider retention and applicable legal requirements
+                may affect what can be deleted. Your name is not included in AI
+                request fields, but journal text may itself contain identifying
+                information. Avoid entering information you do not want processed.
             </p>
 
             <h2>8. Security and international processing</h2>
@@ -311,7 +334,7 @@
             <h2>9. Children's privacy</h2>
             <p>
                 Calma is not directed at children under the age of 13. We do not
-                knowingly collect any information from children. If you believe
+                knowingly collect information from children under 13. If you believe
                 a child has used the app, please contact us and we will provide
                 guidance.
             </p>

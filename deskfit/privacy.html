@@ -451,7 +451,7 @@
                 <div class="hero-meta">
                     <div class="meta-item">
                         <div class="meta-dot"></div>
-                        Effective: August 11, 2026
+                        Effective: November 5, 2026
                     </div>
                     <div class="meta-item">
                         <div
@@ -501,13 +501,13 @@
                     </div>
                     <p>
                         The following data is stored
-                        <strong>locally on your device only</strong>:
+                        <strong>locally on your device</strong>. Some preferences are also sent if you authorize AI workouts, as described below:
                     </p>
                     <ul>
                         <li>Your first name (entered during onboarding)</li>
                         <li>Fitness level and goal preferences</li>
                         <li>Work schedule and break reminder settings</li>
-                        <li>Workout history and session data</li>
+                        <li>Workout history, session data, saved routines, and Favorites</li>
                         <li>Streak and progress information</li>
                         <li>Selected app theme</li>
                     </ul>
@@ -612,8 +612,8 @@
                     <div class="highlight">
                         <p>
                             <strong>Your name is not sent.</strong>
-                            We also do not send your email address, workout
-                            history, device information, contacts, or geographic
+                            We also do not send your email address, complete workout
+                            history records, device identifiers, contacts, or geographic
                             location to our API or the Claude API.
                         </p>
                     </div>
@@ -627,6 +627,14 @@
                             >anthropic.com/privacy</a
                         >. We recommend reviewing it if you have questions about
                         how API requests are processed.
+                    </p>
+                    <p>
+                        Anthropic's standard API policy provides for deletion of inputs
+                        and outputs within 30 days, subject to the applicable agreement,
+                        service features, and safety or legal exceptions. Provider retention
+                        is separate from DeskFit's handling of workout requests. We do not
+                        promise zero retention by Anthropic. See
+                        <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data" target="_blank" rel="noopener noreferrer" style="color: var(--accent2)">Anthropic's commercial data-retention policy</a>.
                     </p>
                 </div>
 
@@ -645,13 +653,26 @@
                         <li>
                             <strong>Apple Health</strong> — If you grant
                             permission, completed workouts and estimated
-                            calories can be written to the Health app.
+                            calories can be written to the Health app. DeskFit does
+                            not read your Apple Health data. Deleting a workout or
+                            history in DeskFit, or deleting DeskFit itself, does not
+                            delete records already saved to Apple Health. Manage
+                            those records and permissions separately in Apple's
+                            Health app or system settings.
                         </li>
                     </ul>
                     <p>
                         Workout and stretch reminders are scheduled locally on
                         your device; DeskFit AI does not use remote push
                         notifications.
+                    </p>
+                    <p>
+                        If you choose to export history or share a workout card,
+                        the App creates the selected file or card on your device
+                        and passes it to the destination you select. Copies saved
+                        or sent through another app or service are subject to that
+                        destination's practices and are not removed by deleting
+                        DeskFit history or the App.
                     </p>
                     <p>
                         We do not integrate any advertising SDKs, analytics
@@ -665,11 +686,27 @@
                     <p>
                         Your name, workout history, progress, and saved settings
                         are stored locally on your device using Apple's
-                        SwiftData framework and UserDefaults. Anonymous workout
+                        SwiftData framework and UserDefaults. Workout
                         preferences are transmitted when you request an AI
                         workout, as described in Section 3. Locally stored data
                         may be included in your device backup if backup is
                         enabled.
+                    </p>
+                    <p>
+                        Completed workouts are saved automatically. Saved routine details
+                        include exercise order, names, instructions, modifications, sets,
+                        reps, rest times, and the workout's settings. Repeating a saved
+                        routine uses this local copy without a new AI request and records
+                        a separate completion when you finish.
+                    </p>
+                    <p>
+                        The latest 50 replayable routines are retained without a fixed
+                        time expiry. Up to 10 Favorites are protected from automatic
+                        cleanup, including Favorites older than those latest 50.
+                        Older non-favorite routine details may be removed during cleanup;
+                        their completion records and progress remain until you delete them.
+                        Older entries without recoverable routine details may remain in
+                        history without being available to replay.
                     </p>
                     <div class="highlight highlight-green">
                         <p>
@@ -695,9 +732,13 @@
                         not contain the original request, selected preferences,
                         pain points, name, account identifier, device
                         identifier, IP address, or individual workout history.
-                        Unreviewed candidates automatically expire after 90
-                        days unless they are generated again or approved for
-                        the exercise catalog.
+                        Unreviewed candidates are scheduled to expire 90 days
+                        after their most recent generation. Generating the same
+                        exercise again can renew that period; approved shared
+                        catalog content may be retained longer. Expired candidate
+                        records are removed through AWS's asynchronous expiry process.
+                        Turning off contributions stops future collection but does
+                        not remove previously contributed, unlinked content.
                     </p>
                 </div>
 
@@ -730,12 +771,27 @@
                             preferences, and schedule anytime in Settings
                         </li>
                         <li>
-                            <strong>Deletion</strong> — Delete the app to
-                            permanently remove all data
+                            <strong>Delete a workout</strong> — Open Progress &rarr;
+                            Workout History, select a workout, and choose Delete
+                            Workout to remove that completion and its saved routine
+                            or Favorite. Other completions remain.
                         </li>
                         <li>
-                            <strong>Reset</strong> — Use "Reset Onboarding" in
-                            Settings to start fresh
+                            <strong>Clear History</strong> — In Progress &rarr;
+                            Workout History, choose Clear History to remove all
+                            completions, saved routines, and Favorites and reset
+                            workout progress. Your profile and settings remain.
+                        </li>
+                        <li>
+                            <strong>Delete All Data</strong> — Use Delete All Data
+                            in Settings to remove the local profile, workout data,
+                            and preferences, or delete the app to remove its local
+                            data. Existing device backups and Apple Health records
+                            are managed separately and are not erased by these actions.
+                        </li>
+                        <li>
+                            <strong>Reset Onboarding</strong> — Reopens onboarding;
+                            it does not delete existing workout history or saved routines
                         </li>
                     </ul>
                     <p>
